@@ -121,12 +121,12 @@ def tchrProfile(request):
     return render(request, 'teacher.html')
 
 @login_required
-def editStdProfile(request):
-    return render(request, 'EditStudentProfile.html')
-
-@login_required
 def editTchProfile(request):
     return render(request, 'EditTeacherProfile.html')
+
+@login_required
+def editStdProfile(request):
+    return render(request, 'EditStudentProfile.html')
 
 
 
@@ -140,6 +140,16 @@ def profile_redirect(request):
         # Handle other roles or lack of role
         return redirect('home')
 
+
+@login_required
+def editProfile_redirect(request):
+    if request.user.role == 'teacher':
+        return redirect('editTchProfile')
+    elif request.user.role == 'student':
+        return redirect('editProfile')
+    else:
+        # Handle other roles or lack of role
+        return redirect('home')
 
 
 #FOR RESETTING PASSWORD

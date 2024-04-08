@@ -19,6 +19,8 @@ urlpatterns = [
     path('tchrProfile/', tchrProfile, name='tchrProfile'),
     path('tchrProfile/api/', TeacherProfileView.as_view(), name='api-teacher-profile'),
 
+
+    path('edit/', editProfile_redirect, name='editProfile_redirect'),
     path('editProfile/', editStdProfile, name='editProfile'),
     path('editProfile/api/', EditStudentProfileView.as_view(), name='editProfileAPI'),
     path('editTchProfile/', editTchProfile, name='editTchProfile'),
