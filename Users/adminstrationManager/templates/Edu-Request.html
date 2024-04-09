@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educator Requests</title>
     <link rel="stylesheet" href="{% static 'css/Edu-Request.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
 </head>
 <body>
     <div class="container">
@@ -26,25 +29,8 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>John Doe</td>
-                    <td>2024-03-16</td>
-                    <td class="action-icons">
-                        <a href="#">✅</a> <!-- Accept -->
-                        <a href="#" class="deny">❌</a> <!-- Deny -->
-                        <a href="#">👁️</a> <!-- View -->
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jane Smith</td>
-                    <td>2024-03-15</td>
-                    <td class="action-icons">
-                        <a href="#">✅</a> <!-- Accept -->
-                        <a href="#" class="deny">❌</a> <!-- Deny -->
-                        <a href="#">👁️</a> <!-- View -->
-                    </td>
-                </tr>
+            <tbody id="educatorList">
+                <!-- Educators will be loaded here dynamically -->
             </tbody>
         </table>
     </div>
@@ -91,5 +77,10 @@
             event.stopPropagation();
         });
     </script>
+
+<script type="text/javascript">
+    var csrftoken = '{{ csrf_token }}';
+</script>
+<script src="{% static 'js/eduRequest.js' %}"></script>
 </body>
 </html>

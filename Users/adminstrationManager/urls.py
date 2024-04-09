@@ -33,4 +33,9 @@ urlpatterns = [
     path('userMang/api/create_user/', CreateUserView.as_view(), name='create_user'),
 
 
+    path('educator/approve/<int:pk>/', views.approve_educator, name='approve_educator'),
+    path('educator/deny/<int:pk>/', views.deny_educator, name='delete_educator'),
+    path('educator/details/<int:pk>/', views.educator_details, name='educator_details'),
+    path('educator/list/', views.list_educators, name='list_educators'),  # New path for listing educators
+
 ]

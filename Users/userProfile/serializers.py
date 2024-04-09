@@ -171,15 +171,17 @@ class EditStudentProfileSerializer(serializers.ModelSerializer):
 class TeacherProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     full_name = serializers.SerializerMethodField()  # Method field for dynamically calculated data
+    request_date = serializers.SerializerMethodField()  # Use a method field to get the date joined from the User model
 
     class Meta:
         model = Educator
-        fields = ['user', 'company','professional_title','linkedIn_account','areas_of_specialization', 'full_name']
+        fields = ['user', 'id','company','professional_title','linkedIn_account','areas_of_specialization', 'full_name', 'request_date']
 
     def get_full_name(self, obj):
         return f"{obj.user.first_name} {obj.user.last_name}" 
     
-
+    def get_request_date(self, obj):
+        return obj.user.date_joined.date()
 
 
 class EditTeacherProfileSerializer(serializers.ModelSerializer):

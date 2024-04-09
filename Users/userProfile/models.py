@@ -82,6 +82,8 @@ class Educator(Profile):
     linkedIn_account = models.URLField(max_length=200, blank=True)
     is_official_reviewer = models.BooleanField(default=False)
     areas_of_specialization = models.TextField(blank=True)
+    educator_verified = models.BooleanField(default=False)
+
     def get_absolute_url(self):
         return reverse('educator_detail', kwargs={'pk': self.pk})
 
