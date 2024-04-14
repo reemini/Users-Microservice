@@ -132,10 +132,13 @@
 
 .course-section {
     width: 100%;
-    padding: 30px;
+    padding: 15px; /* Reduce padding for smaller overall size */
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
     text-align: center;
+    height: 0%;
 }
 
 .category-type {
@@ -185,12 +188,13 @@
 }
 
 .course-image {
+    padding-top: 5px;
     max-width: 100%;
-    height: auto;
-    /* Ensures the image maintains its aspect ratio */
     border-radius: 8px;
     margin-bottom: 10px;
-    /* Add some space between the image and other content */
+    width: 100%; /* Set uniform width for all images */
+    height: 200px; /* Set uniform height for all images */
+    object-fit: cover; /* Adjust image to fill the container while preserving aspect ratio *//
 }
 
 /* /*   course section end */

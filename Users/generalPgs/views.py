@@ -142,3 +142,7 @@ class DeleteLessonView(APIView):
 
         # Return the same response status and data
         return Response(status=response.status_code, data=response.json() if response.content else None)
+    
+
+def editQuiz(request):
+    return render(request,'editQuiz.html')
