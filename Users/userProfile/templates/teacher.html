@@ -8,10 +8,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="{% static 'css/teacher.css' %}" />
   <!-- font-awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
@@ -19,11 +16,7 @@
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
-          <img
-            id="user-profile-picture"
-            src="{% static 'images/profile-img.png' %}"
-            alt=""
-          />
+          <img id="user-profile-picture" src="{% static 'images/profile-img.png' %}" alt="" />
           <h2 class="name-profile">Eyad Salem</h2>
           <p class="ID-profile">4010365</p>
           <p class="ProfeTitle-profile">Software Engineer</p>
@@ -36,14 +29,11 @@
               complex problems.
             </p>
             <div class="pro-links">
-              <a href="#"
-                ><i class="fa-brands fa-linkedin" style="color: #543786"></i
-              ></a>
+              <a href="#"><i class="fa-brands fa-linkedin" style="color: #543786"></i></a>
             </div>
           </div>
           <a href="{% url 'editTchProfile' %}">
-            <button class="btn-theme">Edit Profile</button></a
-          >
+            <button class="btn-theme">Edit Profile</button></a>
         </div>
       </div>
     </div>
@@ -64,6 +54,8 @@
           </div>
         </div>
       </div>
+      <!------------- add new course------------------- -->
+      <button class="btn-theme-createcourse" id="createCourseBtn">Create New Course</button>
 
       <!-- ---------section start here------------------- -->
       <div class="sections">
@@ -167,6 +159,34 @@
         }
       }, 20); // Adjust the interval for desired animation speed
     }
+
+    // script for pop-up create new course---------------------------------------
+    // Get the button that opens the modal
+    var createCourseBtn = document.getElementById("createCourseBtn");
+
+    // Get the modal element
+    var createCourseModal = document.getElementById("createCourseModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    createCourseBtn.onclick = function () {
+      createCourseModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      createCourseModal.style.display = "none";
+    }
+
+    // When the user clicks outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == createCourseModal) {
+        createCourseModal.style.display = "none";
+      }
+    }
+
 
     const STATIC_URL = "{% static '' %}";
   </script>

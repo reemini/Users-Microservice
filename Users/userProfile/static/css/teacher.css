@@ -167,6 +167,27 @@
     text-decoration: underline;
 }
 
+.btn-theme-createcourse {
+    padding: 10px 20px;
+    margin-left: 42.5%;
+    margin-top: 2%;
+    border: 2px solid rgba(84, 55, 134, 1);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 30px;
+    color: rgba(84, 55, 134, 1);
+    font-size: 15px;
+    text-transform: capitalize;
+    transition: all 0.5s ease;
+    box-shadow: black;
+}
+
+.btn-theme-createcourse:hover {
+    color: rgba(84, 55, 134, 1);
+    background-color: rgba(255, 205, 78, 1);
+
+}
+
 /* Styles for right__col  end */
 
 /*------------------------------ course section start ---------------------------------------*/
