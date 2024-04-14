@@ -184,6 +184,14 @@
     text-align: center;
 }
 
+#MyPublishedCourses{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
 .category-type {
     font-size: 20px;
     font-weight: 400;

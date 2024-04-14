@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'userProfile',
     'adminstrationManager',
+    'generalPgs',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +139,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'mindeescape@gmail.com'
 EMAIL_HOST_PASSWORD = 'pwlq rowq mvfh icbw'
 
-SITE_DOMAIN = 'http://127.0.0.1:8000'
 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Base URL for the Courses microservice
+SITE_DOMAIN = 'http://127.0.0.1:8000'
+COURSES_SERVICE_URL = 'http://localhost:8001'

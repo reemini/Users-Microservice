@@ -1,6 +1,7 @@
+import requests
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import CustomUserSerializer, StudentProfileSerializer, EditStudentProfileSerializer, TeacherProfileSerializer, EditTeacherProfileSerializer
+from .serializers import CustomUserSerializer, StudentProfileSerializer, EditStudentProfileSerializer, TeacherProfileSerializer, EditTeacherProfileSerializer, SimpleCourseSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
@@ -81,29 +82,35 @@ def signup_page(request):
 
 def login_page(request):
     if request.user.is_authenticated:
-        # If user is already logged in, redirect to userHome
+        # If user is already logged in, redirect to home page
         return redirect(reverse('userHome'))
 
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
         try:
-            user = CustomUser.objects.get(email=email)  # Attempt to retrieve the user by email
+            user = CustomUser.objects.get(email=email)
             if not user.email_verified:
                 messages.error(request, 'Email has not been verified. Please check your inbox.')
+                return render(request, 'login.html')
+
+            # Check if the user has an associated Educator profile and if it is verified
+            if hasattr(user, 'educator_profile') and not user.educator_profile.educator_verified:
+                messages.error(request, 'Educator account not verified. Please contact support.')
+                return render(request, 'login.html')
+
+            # Authenticate user
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'You are now logged in.')
+                return redirect(reverse('userHome'))
             else:
-                user = authenticate(request, username=email, password=password)
-                if user is not None:
-                    login(request, user)
-                    messages.success(request, 'You are now logged in.')
-                    return redirect(reverse('userHome'))
-                else:
-                    messages.error(request, 'Invalid password.')
+                messages.error(request, 'Invalid password.')
         except CustomUser.DoesNotExist:
             messages.error(request, 'The email has not been registered.')
 
     return render(request, 'login.html')
-
 def home(request):
     return render(request, 'home.html')
 
@@ -260,11 +267,33 @@ class TeacherProfileView(APIView):
     def get(self, request, format=None):
         try:
             teacher_profile = Educator.objects.get(user=request.user)
-            serializer = TeacherProfileSerializer(teacher_profile)
-            return Response(serializer.data)
+            teacher_data = TeacherProfileSerializer(teacher_profile).data
+            courses_data = self.get_educator_courses(teacher_profile.id)
+
+            response_data = {
+                'educator': teacher_data,
+                'courses': courses_data
+            }            
+            return Response(response_data)
         except Educator.DoesNotExist:
                 raise Http404("Educator profile does not exist for this user.")
-        
+    
+    def get_educator_courses(self, educator_id):
+        """Fetches courses created by the educator from the Courses microservice."""
+        courses_service_url = settings.COURSES_SERVICE_URL
+        endpoint = f"{courses_service_url}/courses/eduCourses/api/?instructor={educator_id}"
+        try:
+            response = requests.get(endpoint)
+            response.raise_for_status()
+            courses_data = response.json()
+            # Serialize the raw JSON data using the updated complex serializer
+            serializer = SimpleCourseSerializer(data=courses_data, many=True)
+            serializer.is_valid(raise_exception=True)
+            return serializer.validated_data
+        except requests.exceptions.RequestException as e:
+            print(f"Failed to fetch courses: {e}")
+            return []
+
 
 
 class EditTeacherProfileView(APIView):

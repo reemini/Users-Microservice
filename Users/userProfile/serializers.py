@@ -1,6 +1,9 @@
+from django.conf import settings
+import requests
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+
 from .models import CustomUser, Educator, Student
 
 from django.contrib.auth.hashers import make_password
@@ -171,15 +174,17 @@ class EditStudentProfileSerializer(serializers.ModelSerializer):
 class TeacherProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     full_name = serializers.SerializerMethodField()  # Method field for dynamically calculated data
+    request_date = serializers.SerializerMethodField()  # Use a method field to get the date joined from the User model
 
     class Meta:
         model = Educator
-        fields = ['user', 'company','professional_title','linkedIn_account','areas_of_specialization', 'full_name']
+        fields = ['user', 'id','company','professional_title','linkedIn_account','areas_of_specialization', 'full_name', 'request_date']
 
     def get_full_name(self, obj):
         return f"{obj.user.first_name} {obj.user.last_name}" 
     
-
+    def get_request_date(self, obj):
+        return obj.user.date_joined.date()
 
 
 class EditTeacherProfileSerializer(serializers.ModelSerializer):
@@ -224,3 +229,35 @@ class EditTeacherProfileSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'password': password_errors})
 
         return instance 
+    
+    
+    
+    
+#for fetching data from Course Microservice
+class SimpleContentSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    type = serializers.CharField(max_length=100)
+    reference = serializers.CharField()
+
+class SimpleLessonSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=200)
+    contents = SimpleContentSerializer(many=True)
+
+class SimpleSectionSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=200)
+    description = serializers.CharField(max_length=300)
+    lessons = SimpleLessonSerializer(many=True, required=False, default=[])
+
+class SimpleCourseSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=200)
+    instructor = serializers.IntegerField()  # Assuming instructor is represented by an ID
+    category = serializers.CharField(max_length=100)
+    description = serializers.CharField(max_length=300)
+    duration = serializers.CharField(max_length=50)
+    difficultyLevel = serializers.CharField(max_length=50)
+    coursePic = serializers.URLField(required=False, allow_null=True)
+    isPublished = serializers.BooleanField()
+    sections = SimpleSectionSerializer(many=True)

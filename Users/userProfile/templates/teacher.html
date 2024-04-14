@@ -1,513 +1,176 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>Educator Profile</title>
-    <!-- custom css -->
-    <link rel="stylesheet" href="{% static 'css/teacher.css' %}" />
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Educator Profile</title>
+  <!-- custom css -->
+  <link rel="stylesheet" href="{% static 'css/teacher.css' %}" />
+  <!-- font-awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
 
-  <body>
-    <div class="header__wrapper">
-      <div class="cols__container">
-        <div class="left__col">
-          <div class="img__container">
-            <img id="user-profile-picture" src="{% static 'images/profile-img.png' %}" alt="" />
-            <h2 class="name-profile">Eyad Salem</h2>
-            <p class="ID-profile">4010365</p>
-            <p class="ProfeTitle-profile">Software Engineer</p>
-            <p class="company-profile">Work at AWS Acadimy Company</p>
-            <div class="content">
-              <hr />
-              <p class="areaOfSpec">
-                Software engineer extraordinaire, skilled in full-stack
-                development and passionate about crafting innovative solutions
-                to complex problems.
-              </p>
-              <div class="pro-links">
-                <a href="#"
-                  ><i class="fa-brands fa-linkedin" style="color: #543786"></i
-                ></a>
-              </div>
-            </div>
-            <a href="{% url 'editTchProfile' %}">
-            <button class="btn-theme">Edit Profile</button></a>
-        </div>
-        </div>
-      </div>
-      <div class="right__col">
-        <nav>
-          <ul class="menu">
-            <li><a href="#MyPublishedCourses">My Published Courses</a></li>
-            <li><a href="#MyArchive">My Archive</a></li>
-          </ul>
-        </nav>
-
-        <div class="analysis-section">
-          <!-- Information A1.1 and A1.2 -->
-          <div class="analysis-info">
-            <div class="info-box">
-              <h3>Number of enrolled students in all courses:</h3>
-              <span id="total-courses">0</span>
+<body>
+  <div class="header__wrapper">
+    <div class="cols__container">
+      <div class="left__col">
+        <div class="img__container">
+          <img
+            id="user-profile-picture"
+            src="{% static 'images/profile-img.png' %}"
+            alt=""
+          />
+          <h2 class="name-profile">Eyad Salem</h2>
+          <p class="ID-profile">4010365</p>
+          <p class="ProfeTitle-profile">Software Engineer</p>
+          <p class="company-profile">Work at AWS Acadimy Company</p>
+          <div class="content">
+            <hr />
+            <p class="areaOfSpec">
+              Software engineer extraordinaire, skilled in full-stack
+              development and passionate about crafting innovative solutions to
+              complex problems.
+            </p>
+            <div class="pro-links">
+              <a href="#"
+                ><i class="fa-brands fa-linkedin" style="color: #543786"></i
+              ></a>
             </div>
           </div>
-        </div>
-
-        <div class="course-section" id="course-section">
-          <!-- <div class="title-profile">
-                    <h2 class="profli-recent-courses">Recent Courses</h2>
-                </div> -->
-          <!-- Course 1 -->
-          <div
-            class="course-info"
-            onclick="window.location.href='edit-profile.html'"
+          <a href="{% url 'editTchProfile' %}">
+            <button class="btn-theme">Edit Profile</button></a
           >
-            <!-- Course content -->
-            <img
-              class="course-image"
-              src="{% static 'images/img1.jpeg' %}"
-              alt="Course 1"
-            />
-            <div class="course-title">ALRHAZ</div>
-            <div class="course-details">
-              <div class="category-type">science</div>
-              <div class="hours">
-                <span class="emoji">&#9200;</span> 20 hours
-              </div>
-              <div class="students">
-                <span class="emoji">&#128100;</span> 500
-              </div>
-
-              <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
-              <div class="instructor">
-                <span class="emoji">&#128188;</span> John Doe
-              </div>
-              <div class="reviews">
-                ⭐⭐⭐⭐⭐
-                <!-- Unicode stars for ratings -->
-                <p>1K</p>
-                <!-- Number of reviews -->
-              </div>
-            </div>
-          </div>
-          <!-- Course 2 -->
-          <div
-            class="course-info"
-            onclick="window.location.href='edit-profile.html'"
-          >
-            <img
-              class="course-image"
-              src="{% static 'images/img2.jpeg' %}"
-              alt="Course 2"
-            />
-            <div class="course-title">PRAKTIKA</div>
-            <div class="course-details">
-              <div class="category-type">science</div>
-              <div class="hours">
-                <span class="emoji">&#9200;</span> 20 hours
-              </div>
-              <div class="students">
-                <span class="emoji">&#128100;</span> 500
-              </div>
-              <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
-              <div class="instructor">
-                <span class="emoji">&#128188;</span> John Doe
-              </div>
-              <!-- Inside the course-details div -->
-              <div class="reviews">
-                ⭐⭐⭐⭐⭐
-                <!-- Unicode stars for ratings -->
-                <p>1K</p>
-                <!-- Number of reviews -->
-              </div>
-            </div>
-          </div>
-          <!-- Course 3 -->
-          <div
-            class="course-info"
-            onclick="window.location.href='edit-profile.html'"
-          >
-            <img
-              class="course-image"
-              src="{% static 'images/img3.jpeg' %}"
-              alt="Course 2"
-            />
-            <div class="course-title">PRAKTIKA</div>
-            <div class="course-details">
-              <div class="category-type">History</div>
-              <div class="hours">
-                <span class="emoji">&#9200;</span> 20 hours
-              </div>
-              <div class="students">
-                <span class="emoji">&#128100;</span> 500
-              </div>
-              <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
-              <div class="instructor">
-                <span class="emoji">&#128188;</span> John Doe
-              </div>
-              <!-- Inside the course-details div -->
-              <div class="reviews">
-                ⭐⭐⭐⭐⭐
-                <!-- Unicode stars for ratings -->
-                <p>1K</p>
-                <!-- Number of reviews -->
-              </div>
-            </div>
-          </div>
-          <!-- Add more courses as needed... -->
-        </div>
-        <!-- ---------section start here------------------- -->
-        <div class="sections">
-          <div id="MyPublishedCourses" class="section">
-            <div class="course-section">
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <!-- Course content -->
-                <img
-                  class="course-image"
-                  src="{% static 'images/img1.jpeg' %}"
-                  alt="Course 1"
-                />
-                <div class="course-title">ALRHAZ</div>
-                <div class="course-details">
-                  <div class="category-type">science</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <img
-                  class="course-image"
-                  src="{% static 'images/img2.jpeg' %}"
-                  alt="Course 2"
-                />
-                <div class="course-title">PRAKTIKA</div>
-                <div class="course-details">
-                  <div class="category-type">science</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <!-- Inside the course-details div -->
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <img class="course-image" src="{% static
-                'images/rectangle-14.png' %}"" alt=" Course 2" />
-                <div class="course-title">PRAKTIKA</div>
-                <div class="course-details">
-                  <div class="category-type">History</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <!-- Inside the course-details div -->
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <img
-                  class="course-image"
-                  src="{% static 'images/rectangle-16-3qf.png' %}"
-                  alt="Course 2"
-                />
-                <div class="course-title">PRAKTIKA</div>
-                <div class="course-details">
-                  <div class="category-type">History</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <!-- Inside the course-details div -->
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <img
-                  class="course-image"
-                  src="{% static 'images/rectangle-16-hiD.png' %}"
-                  alt="Course 2"
-                />
-                <div class="course-title">PRAKTIKA</div>
-                <div class="course-details">
-                  <div class="category-type">History</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <!-- Inside the course-details div -->
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-              <!-- Add more courses as needed... -->
-            </div>
-          </div>
-          <div id="MyArchive" class="section">
-            <div class="course-section">
-              <!-- Course 1 -->
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <img
-                  class="course-image"
-                  src="{% static 'images/rectangle-16-3qf.png' %}"
-                  alt="Course 2"
-                />
-                <div class="course-title">PRAKTIKA</div>
-                <div class="course-details">
-                  <div class="category-type">History</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <!-- Inside the course-details div -->
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="course-info"
-                onclick="window.location.href='edit-profile.html'"
-              >
-                <img
-                  class="course-image"
-                  src="{% static 'images/rectangle-16-hiD.png' %}"
-                  alt="Course 2"
-                />
-                <div class="course-title">PRAKTIKA</div>
-                <div class="course-details">
-                  <div class="category-type">History</div>
-                  <div class="hours">
-                    <span class="emoji">&#9200;</span> 20 hours
-                  </div>
-                  <div class="students">
-                    <span class="emoji">&#128100;</span> 500
-                  </div>
-                  <div class="lessons">
-                    <span class="emoji">&#128214;</span> 10
-                  </div>
-                  <div class="instructor">
-                    <span class="emoji">&#128188;</span> John Doe
-                  </div>
-                  <!-- Inside the course-details div -->
-                  <div class="reviews">
-                    ⭐⭐⭐⭐⭐
-                    <!-- Unicode stars for ratings -->
-                    <p>1K</p>
-                    <!-- Number of reviews -->
-                  </div>
-                </div>
-              </div>
-              <!-- Add more courses as needed... -->
-            </div>
-          </div>
         </div>
       </div>
     </div>
+    <div class="right__col">
+      <nav>
+        <ul class="menu">
+          <li><a href="#MyPublishedCourses">My Published Courses</a></li>
+          <li><a href="#MyArchive">My Archive</a></li>
+        </ul>
+      </nav>
 
-    <script>
-      // script for moving through the sections on the same page---------------------
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuLinks = document.querySelectorAll(".menu a");
-        const courseSection = document.querySelector(".course-section");
+      <div class="analysis-section">
+        <!-- Information A1.1 and A1.2 -->
+        <div class="analysis-info">
+          <div class="info-box">
+            <h3>Number of enrolled students in all courses:</h3>
+            <span id="total-courses">0</span>
+          </div>
+        </div>
+      </div>
 
-        menuLinks.forEach(function (menuLink) {
-          menuLink.addEventListener("click", function (event) {
-            const targetId = menuLink.getAttribute("href").substring(1); // Remove the leading '#' from the href
-            const targetSection = document.getElementById(targetId);
+      <!-- ---------section start here------------------- -->
+      <div class="sections">
+        <div id="MyPublishedCourses" class="section">
+          <div class="course-section"></div>
+        </div>
+        <div id="MyArchive" class="section">
+          <div class="course-section"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            // Hide all sections
-            const sections = document.querySelectorAll(".section");
-            sections.forEach(function (section) {
-              section.style.display = "none";
-            });
+  <script>
+    // script for moving through the sections on the same page---------------------
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuLinks = document.querySelectorAll(".menu a");
 
-            // Hide the old course-section
-            courseSection.style.display = "none";
+      menuLinks.forEach(function (menuLink) {
+        menuLink.addEventListener("click", function (event) {
+          const targetId = menuLink.getAttribute("href").substring(1); // Remove the leading '#' from the href
+          const targetSection = document.getElementById(targetId);
 
-            // Show only the targeted section
-            targetSection.style.display = "block";
-
-            // Remove active class from all links
-            menuLinks.forEach(function (link) {
-              link.classList.remove("active");
-            });
-
-            // Add active class to the clicked link
-            menuLink.classList.add("active");
-
-            event.preventDefault(); // Prevent the default behavior of the link
+          // Hide all sections
+          const sections = document.querySelectorAll(".section");
+          sections.forEach(function (section) {
+            section.style.display = "none";
+            section.querySelector(".course-section").style.display = "none"; // Also ensure internal course-sections are hidden
           });
+
+          // Show only the targeted section and its course-section if applicable
+          targetSection.style.display = "block";
+          const courseSection = targetSection.querySelector(".course-section");
+          if (courseSection) {
+            courseSection.style.display = "flex"; // Show the course-section within the active section
+          }
+
+          // Remove active class from all links and add to the current link
+          menuLinks.forEach(function (link) {
+            link.classList.remove("active");
+          });
+          menuLink.classList.add("active");
+
+          event.preventDefault(); // Prevent the default behavior of the link
         });
       });
+    });
 
-      // script for the category---------------------------------------
-      function toggleDropdown() {
-        document.getElementById("categoryDropdown").classList.toggle("show");
-      }
+    // script for the category---------------------------------------
+    function toggleDropdown() {
+      document.getElementById("categoryDropdown").classList.toggle("show");
+    }
 
-      function searchCategory() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("categorySearchInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("categoryDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-          txtValue = a[i].textContent || a[i].innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "";
-          } else {
-            a[i].style.display = "none";
-          }
+    function searchCategory() {
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("categorySearchInput");
+      filter = input.value.toUpperCase();
+      div = document.getElementById("categoryDropdown");
+      a = div.getElementsByTagName("a");
+      for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          a[i].style.display = "";
+        } else {
+          a[i].style.display = "none";
         }
       }
+    }
 
-      // script for making the numbers of analysis increase----------------------------
-      window.addEventListener("DOMContentLoaded", () => {
-        const totalCoursesSpan = document.getElementById("total-courses");
+    // script for making the numbers of analysis increase----------------------------
+    window.addEventListener("DOMContentLoaded", () => {
+      const totalCoursesSpan = document.getElementById("total-courses");
 
-        const totalCourses = 105; /*  total courses value */
-        const coursesPerMonth = 15; /*  courses per month value */
-        const completedPercentage = 76; /*  completed percentage value */
+      const totalCourses = 105; /*  total courses value */
+      const coursesPerMonth = 15; /*  courses per month value */
+      const completedPercentage = 76; /*  completed percentage value */
 
-        animateNumber(totalCoursesSpan, totalCourses);
-      });
+      animateNumber(totalCoursesSpan, totalCourses);
+    });
 
-      function animateNumber(element, finalValue) {
-        let currentValue = 1;
-        const increment = Math.ceil(finalValue / 100); // Divide final value by 100 for smooth animation
-        const interval = setInterval(() => {
-          currentValue += increment;
-          element.textContent = currentValue;
-          if (currentValue >= finalValue) {
-            clearInterval(interval);
-          }
-        }, 20); // Adjust the interval for desired animation speed
-      }
+    function animateNumber(element, finalValue) {
+      let currentValue = 1;
+      const increment = Math.ceil(finalValue / 100); // Divide final value by 100 for smooth animation
+      const interval = setInterval(() => {
+        currentValue += increment;
+        element.textContent = currentValue;
+        if (currentValue >= finalValue) {
+          clearInterval(interval);
+        }
+      }, 20); // Adjust the interval for desired animation speed
+    }
 
-      function animatePercentage(element, finalValue) {
-        let currentValue = 0;
-        const increment = Math.ceil(finalValue / 100); // Divide final value by 100 for smooth animation
-        const interval = setInterval(() => {
-          currentValue += increment;
-          element.textContent = currentValue + "%";
-          if (currentValue >= finalValue) {
-            clearInterval(interval);
-          }
-        }, 20); // Adjust the interval for desired animation speed
-      }
-    </script>
+    function animatePercentage(element, finalValue) {
+      let currentValue = 0;
+      const increment = Math.ceil(finalValue / 100); // Divide final value by 100 for smooth animation
+      const interval = setInterval(() => {
+        currentValue += increment;
+        element.textContent = currentValue + "%";
+        if (currentValue >= finalValue) {
+          clearInterval(interval);
+        }
+      }, 20); // Adjust the interval for desired animation speed
+    }
 
-<script src="{% static 'js/tchProfile.js' %}"></script>
+    const STATIC_URL = "{% static '' %}";
+  </script>
 
-  </body>
+  <script src="{% static 'js/tchProfile.js' %}"></script>
+</body>
 {% endblock %}
