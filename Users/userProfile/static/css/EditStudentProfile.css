@@ -13,8 +13,12 @@ body {
 }
 
 .profile-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  margin-right: 80px;
+  margin-right: 20px; /* Reduced margin for better spacing */
+  margin-bottom: 20px;
 }
 
 .profile-picture img {
@@ -24,14 +28,17 @@ body {
   object-fit: cover;
   border: 5px solid #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
 }
 
 .edit-icon {
   position: absolute;
+  object-fit: cover;
+  max-width: 100%;
   bottom: 10px;
-  right: 10px;
   background-color: #fff;
   border-radius: 50%;
+  border: 1px solid black;
   padding: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -44,7 +51,7 @@ body {
 }
 
 .form {
-  width: 500px;
+  width: 1100px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -52,12 +59,19 @@ body {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex-basis: 120px; /* Adjust as needed */
+  margin-right: 10px;
+  text-align: right;
 }
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  flex: 1;
   padding: 12px;
   border: none;
   border-bottom: 2px solid #ccc;
@@ -72,27 +86,10 @@ body {
   border-bottom-color: #543787;
 }
 
-.password-container {
-  position: relative;
-}
-
-.show-password {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.show-password i {
-  color: #777;
-}
-
 .btn-theme {
-  margin-left: 25%;
-  background-color: rgba(84, 55, 134, 1);
+  margin-top: 2%;
+  margin-left: 40%;
+  background-color: rgb(134, 55, 55);
   padding: 12px 30px;
   border: none;
   border-radius: 30px;
@@ -108,5 +105,4 @@ body {
   color: rgba(84, 55, 134, 1);
   background-color: rgba(255, 205, 78, 1);
   transform: translateY(-2px);
-
 }
