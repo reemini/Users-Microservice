@@ -503,7 +503,7 @@ section {
 
 .course-image {
     max-width: 100%;
-    height: auto;
+    height: 40%;
     /* Ensures the image maintains its aspect ratio */
     border-radius: 8px;
     margin-bottom: 10px;
