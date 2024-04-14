@@ -255,7 +255,7 @@ class SimpleCourseSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
     instructor = serializers.IntegerField()  # Assuming instructor is represented by an ID
     category = serializers.CharField(max_length=100)
-    description = serializers.CharField(max_length=300)
+    description = serializers.CharField()
     duration = serializers.CharField(max_length=50)
     difficultyLevel = serializers.CharField(max_length=50)
     coursePic = serializers.URLField(required=False, allow_null=True)

@@ -53,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
             courses.forEach(course => {
                 const courseElement = document.createElement('div');
                 courseElement.className = 'course-info';
-                courseElement.onclick = function() { window.location.href = 'edit-profile.html'; };
-    
+                courseElement.onclick = function() { 
+                  window.location.href = `/courseInner/${course.id}/`; // Assuming '/course-details/' is the path set in Django
+              };    
                 const courseImage = document.createElement('img');
                 courseImage.className = 'course-image';
                 courseImage.src = course.coursePic || `${STATIC_URL}images/default-course-image.jpg`;
@@ -113,3 +114,4 @@ function renderStars(rating) {
   }
   return stars;
 }
+
