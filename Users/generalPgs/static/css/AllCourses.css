@@ -83,7 +83,7 @@
   text-align: center;
 }
 
-.category-type {
+/* .category-type {
   font-size: 20px;
   font-weight: 400;
   padding-bottom: 5px;
@@ -91,6 +91,16 @@
   background-repeat: no-repeat;
   background-size: 50%;
   background-position: 80px;
+} */
+
+.category-type {
+  font-size: 15px;
+  font-weight: 400;
+  padding-bottom: 5px;
+  background-image: url(https://odoocdn.com/openerp_website/static/src/img/highlights/yellow_highlight_bold_05.svg);
+  background-repeat: repeat;
+  background-size: 89%;
+  background-position: 1%;
 }
 
 .course-details {
@@ -104,11 +114,17 @@
 }
 
 .course-image {
-  width: 100%;  /* Set the width to 100% to fill the container */
-  height: 40%;  /* Maintain the aspect ratio */
+  padding-top: 5px;
+  max-width: 100%;
   border-radius: 8px;
   margin-bottom: 10px;
-  /* Add some space between the image and other content */
+  width: 100%;
+  /* Set uniform width for all images */
+  height: 200px;
+  /* Set uniform height for all images */
+  object-fit: cover;
+  /* Adjust image to fill the container while preserving aspect ratio */
+  /
 }
 
 /* /*   course section end */
