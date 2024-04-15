@@ -28,7 +28,12 @@
   /* Styles for courseInfoRight */
   .courseInfoRight {
     flex: 1;
-    /* Take up remaining space */
+    width: 400px; /* Define the fixed width you desire */
+    height: 400px; /* Define the fixed height you desire */
+    overflow: hidden; /* Hide any overflowing parts of the image */
+    margin-bottom: 20px;
+    margin-left: 20px;
+    border-radius: 10%; /* Add border radius if desired */
   }
   
   /* Styles for image-and-info */
@@ -40,24 +45,17 @@
   
   /* Styles for about-image */
   .about-image {
-    width: 90%;
-    /* Make the image take up 100% of its container's width */
-    height: auto;
-    /* Maintain aspect ratio */
-    display: block;
-    /* Ensure image is displayed as a block element */
-    margin-bottom: 20px;
-    /* Add some bottom margin for spacing */
-    margin-left: 20px;
-    border-radius: 10%;
-  }
+    width: 100%; /* Make the image take up the entire width of the container */
+    height: 100%; /* Make the image take up the entire height of the container */
+    object-fit: cover; /* Fit the image within the container while maintaining its aspect ratio */
+    border-radius: inherit; /* Inherit border radius from the container */
+}
+
   
   /* Styles for info */
   .info {
     flex: 1;
-    /* Take up remaining space */
     padding: 0 20px;
-    /* Add padding to separate content from the image */
   }
   
   .info h2 {
