@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Creator</title>
+    <!-- custom link -->
+    <link rel="stylesheet" href="{% static 'css/editQuiz.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create Your Quiz</h1>
+        <form id="quizForm">
+            <div>
+                <label for="quizTitle">Quiz Title:</label>
+                <input type="text" id="quizTitle" name="quizTitle" placeholder="Enter quiz title">
+            </div>
+            <div id="questions">
+                <!-- Questions will be added here dynamically -->
+            </div>
+            <button type="button" id="addQuestionBtn">Add Question</button>
+            <button type="button" id="generateQuizBtn">Generate Quiz</button>
+        </form>
+        <div id="quizOutput">
+            <!-- Generated quiz will be displayed here -->
+        </div>
+    </div>
+    <!-- custom link -->
+    <script src="{% static 'editQuiz.js' %}"></script>
+</body>
+
+</html>
+
+
+{% endblock %}

@@ -1,117 +1,148 @@
+/* General styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-  }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
   
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 4.5%;
-  }
-  
-  .profile-picture {
-    position: relative;
-    margin-right: 80px;
-    margin-bottom: 15%;
-  }
-  
-  .profile-picture img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .edit-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    transition: transform 0.3s ease;
-  }
-  
-  .edit-icon:hover {
-    background-color: #dccafa;
-    transform: scale(1.05);
-  }
-  
-  .form {
-    width: 500px;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    font-size: 16px;
-    background-color: transparent;
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none; 
-    border-bottom-color: #543787;
-  }
-  
-  .password-container {
-    position: relative;
-  }
-  
-  .show-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .show-password i {
-    color: #777;
-  }
-  
-  .btn-theme {
-    margin-left: 30%;
-    background-color: rgba(84, 55, 134, 1);
-    padding: 12px 30px;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    font-size: 16px;
-    text-transform: capitalize;
-    transition: all 0.5s ease;
-    transition: background-color 0.3s ease;
-    box-shadow: black;
-  }
-  
-  .btn-theme:hover {
-    color: rgba(84, 55, 134, 1);
-    background-color: rgba(255, 205, 78, 1);
-    transform: translateY(-2px);
-  
-  }
-  
-  
-  
+}
+
+/* Container for form */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 5%; /* Padding for responsiveness */
+  max-width: 1200px; /* Limit the maximum width of the container */
+  margin-top: 200px;
+}
+
+/* Profile picture section */
+.profile-picture {
+  flex: 1; /* Takes up 1/3 of the container width */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center image and icon */
+  margin-right: 40px; /* Space between image and form */
+}
+
+.profile-picture img {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e6e9ee; /* Softer border color */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Softer shadow */
+}
+
+.edit-icon {
+  position: absolute;
+  right: 20px; /* Adjusted position; use left/right as per your need */
+  left: 813px;
+  bottom: 400px; /* Adjusted position */
+  width: 50px; /* Define the width */
+  height: 50px; /* Define the height */
+  background-color: #fff;
+  border: 1px solid #7d7e7e;
+  border-radius: 50%; /* Circular shape */
+  padding-bottom: 2px;
+  padding-top: 12px;
+  padding-left: 18px;
+  padding-right: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 10; /* Bring icon to front if needed */
+}
+
+
+.edit-icon:hover {
+  background-color: #f0e7fe; /* Softer hover color */
+  transform: scale(1.05);
+}
+
+/* Form section */
+.form {
+  flex: 2; /* Takes up 2/3 of the container width */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  padding: 40px;
+}
+
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group label {
+  position: absolute;
+  top: -13px; /* Adjusts the position above the input */
+  left: 15px; /* Adjusts the position to the left of the input */
+  background-color: #fff;
+  padding: 0 5px; /* Padding around the label text */
+  font-weight: 500;
+  color: #555;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%; /* Full width */
+  transition: border-color 0.3s ease;
+  background-color: #ffffff; /* Slight background color */
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #7180d0;
+}
+
+.form-group input:focus + label {
+  color: #7180d0;
+}
+
+.password-container {
+  position: relative;
+  display: flex; /* For proper alignment */
+}
+
+.show-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.show-password i {
+  color: #777;
+}
+
+.btn-theme {
+  padding: 15px 30px;
+  margin-left: 40%;
+  border: 2px solid #543787;
+  border-radius: 30px;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  text-transform: capitalize;
+  transition: all 0.5s ease;
+}
+
+.btn-theme:hover {
+  background-color: #543787;
+  color: white;
+  transform: translateY(-2px);
+}

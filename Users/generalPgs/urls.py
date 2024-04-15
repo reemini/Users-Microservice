@@ -19,5 +19,7 @@ urlpatterns = [
     path('deleteSection/api/<int:section_id>/', DeleteSectionView.as_view(), name='delete_section'),
     path('deleteLesson/api/<int:lesson_id>/', DeleteLessonView.as_view(), name='delete_lesson'),
 
+    # path('editQuiz',views.editQuiz, name = 'editQuiz'),
+
 ]   
 

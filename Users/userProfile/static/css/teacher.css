@@ -167,6 +167,27 @@
     text-decoration: underline;
 }
 
+.btn-theme-createcourse {
+    padding: 10px 20px;
+    margin-left: 42.5%;
+    margin-top: 2%;
+    border: 2px solid rgba(84, 55, 134, 1);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 30px;
+    color: rgba(84, 55, 134, 1);
+    font-size: 15px;
+    text-transform: capitalize;
+    transition: all 0.5s ease;
+    box-shadow: black;
+}
+
+.btn-theme-createcourse:hover {
+    color: rgba(84, 55, 134, 1);
+    background-color: rgba(255, 205, 78, 1);
+
+}
+
 /* Styles for right__col  end */
 
 /*------------------------------ course section start ---------------------------------------*/
@@ -178,13 +199,20 @@
 
 .course-section {
     width: 100%;
-    padding: 30px;
+    padding: 15px;
+    /* Reduce padding for smaller overall size */
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
     text-align: center;
+    height: 0%;
 }
 
-#MyPublishedCourses{
+
+#MyPublishedCourses {
     width: 100%;
     padding: 30px;
     display: flex;
@@ -193,22 +221,21 @@
 }
 
 .category-type {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;
     padding-bottom: 5px;
     background-image: url(https://odoocdn.com/openerp_website/static/src/img/highlights/yellow_highlight_bold_05.svg);
-    background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: 80px;
+    background-repeat: repeat;
+    background-size: 89%;
+    background-position: 1%;
 }
 
 .course-info {
     width: calc(33.33% - 20px);
     /* Adjusted width for each course with 20px gap */
     background-color: #fff;
-    margin-top: 15px;
-    padding: 15px;
-    margin-bottom: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
     margin-left: 20px;
     /* Adjusted margin to create space between rows */
     border-radius: 8px;
@@ -223,7 +250,7 @@
 }
 
 .course-title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
 }
@@ -239,12 +266,17 @@
 }
 
 .course-image {
+    padding-top: 5px;
     max-width: 100%;
-    height: 40%;
-    /* Ensures the image maintains its aspect ratio */
     border-radius: 8px;
     margin-bottom: 10px;
-    /* Add some space between the image and other content */
+    width: 100%;
+    /* Set uniform width for all images */
+    height: 200px;
+    /* Set uniform height for all images */
+    object-fit: cover;
+    /* Adjust image to fill the container while preserving aspect ratio */
+    /
 }
 
 /* /*   course section end */
@@ -361,4 +393,110 @@
     /* Add any other styles you want for the active link */
 }
 
-/* -------------here style for the category + Search-------------- */
+/* --------------------------------------pop-up create new course --------------------------------- */
+/* Style the modal - hidden by default */
+     /* Style the modal - hidden by default */
+     .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4)/* Enable opacity */
+        }
+        
+        /* Modal Content */
+        .modal-content {
+        margin: 15% auto; /* 15% from the top and centered */
+        width: 40%; /* Could be wider or narrower */
+        padding: 0px 50px 50px 50px;
+        border: 3px solid #513886;
+        border-radius: 30px;
+        background-color: #fff; /* White */
+        position: relative; /* To position the close button */
+        animation-name: zoom;
+        animation-duration: 0.6s;
+        }
+        
+        /* Add a zoom animation */
+        @keyframes zoom {
+        from {transform: scale(0, 0);} /* Start from 0 scale */
+        to {transform: scale(1, 1);} /* Scale to 100% */
+        }
+        
+        /* Style the close button */
+        .close {
+        color: #513886;
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        font-size: 36px;
+        font-weight: bold;
+        cursor: pointer;
+        }
+        
+        /* Style the create course button */
+        .createCourseBtn {
+        background-color: #513886; /* Apply the specified color */
+        color: #fff;
+        font-size: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%; /* Make it the same width as inputs */
+        margin-top: 10px;/* Add space after form */
+        }
+        
+        /* Style form elements */
+        
+        .label-Course{
+        color: #513886; /* Apply the specified color to labels */
+        font-weight: 100;
+        z-index: 100;
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        left: 15px;
+        top: 9px;
+        background-color: #ffffff;
+        font-size: 18px;
+        }
+        
+        .Ctext,
+        textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1.9px solid #513886;
+        border-radius: 7px;
+        box-sizing: border-box; 
+        margin-bottom: 10px;
+        line-height: 3ex;
+        position: relative;
+        }
+        
+        
+        select {
+        width: 100%;
+        padding: 5px;
+        padding-left: 10px;
+        border: 2px solid #513886;
+        border-radius: 7px;
+        box-sizing: border-box; /* Include padding in width */
+        margin-bottom: 10px;
+        line-height: 5ex;
+        -webkit-appearance: none;
+        }
+        
+        .title-create-coures{
+        color: #513886; /* Apply the specified color to h2 */
+        font-size: 48px; /* Adjust font size */
+        }
+        ::file-selector-button {
+        display: none;
+        }
+        
