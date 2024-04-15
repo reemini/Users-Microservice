@@ -72,10 +72,12 @@
             <input class="Ctext" type="text" id="courseTitle" name="courseTitle" placeholder="Enter course title..">
 
             <label class="label-Course" for="courseCategory">Course Category:</label>
-            <input class="Ctext" type="text" id="courseCategory" name="courseCategory" placeholder="Enter course category..">
+            <input class="Ctext" type="text" id="courseCategory" name="courseCategory"
+              placeholder="Enter course category..">
 
             <label class="label-Course" for="CourseInstructor">Course Instructor ID:</label>
-            <input class="Ctext" type="text" id="CourseInstructor" name="CourseInstructor" placeholder="Enter your ID..">
+            <input class="Ctext" type="text" id="CourseInstructor" name="CourseInstructor"
+              placeholder="Enter your ID..">
 
             <label class="label-Course" for="courseDescription">Course Description:</label>
             <textarea id="courseDescription" name="courseDescription"
@@ -102,11 +104,35 @@
       <!-- ---------section start here------------------- -->
       <div class="sections">
         <div id="MyPublishedCourses" class="section">
-          <div class="course-section"></div>
+          <div class="course-section">
+            <div class="hamburger-menu">
+              <div class="menu-icon" onclick="toggleMenu()">☰</div>
+              <div class="menu-content" id="menu-content">
+                <ul>
+                  <li onclick="viewCourse()">View Course</li>
+                  <li onclick="editCourse()">Edit Course</li>
+                  <li onclick="showConfirmPopup()">Delete Course</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Confirmation Popup -->
+            <div id="confirm-popup" class="popup">
+              <div class="popup-content">
+                <p>Are you sure you want to delete the course?</p>
+                <div class="button-group">
+                  <button onclick="deleteCourse()">Yes</button>
+                  <button onclick="closePopup()">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div id="MyArchive" class="section">
           <div class="course-section"></div>
         </div>
+
       </div>
     </div>
   </div>
@@ -227,6 +253,43 @@
       if (event.target == createCourseModal) {
         createCourseModal.style.display = "none";
       }
+    }
+    // script for menu (view, edit, and delete)---------------------------------------------------------
+    // Toggle menu visibility
+    function toggleMenu() {
+      const menuContent = document.getElementById('menu-content');
+      menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Handle view course
+    function viewCourse() {
+      alert('View Course selected');
+      toggleMenu(); // Hide the menu
+    }
+
+    // Handle edit course
+    function editCourse() {
+      alert('Edit Course selected');
+      toggleMenu(); // Hide the menu
+    }
+
+    // Display the confirmation popup
+    function showConfirmPopup() {
+      toggleMenu(); // Hide the menu
+      const confirmPopup = document.getElementById('confirm-popup');
+      confirmPopup.style.display = 'flex';
+    }
+
+    // Handle course deletion
+    function deleteCourse() {
+      alert('Course deleted');
+      closePopup();
+    }
+
+    // Close popup
+    function closePopup() {
+      const confirmPopup = document.getElementById('confirm-popup');
+      confirmPopup.style.display = 'none';
     }
 
 

@@ -29,7 +29,7 @@ body {
   /* Adjusted to vertically center the sidebar */
   transform: translateY(-50%);
   width: 270px;
-  background-color: #e9e9e9;
+  background-color: #fbfbfb;
   color: rgba(84, 55, 134, 1);
   padding: 20px;
   transition: width 0.3s, display 0s;
@@ -122,20 +122,23 @@ body {
   /* Center the image horizontally */
 }
 
-.course-content .btn-theme {
-  margin-top: 20px;
-  background-color: #513886;
+.btn-theme {
   color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
+  padding: 5px 5px;
   text-transform: capitalize;
   transition: all 0.5s ease;
   box-shadow: black;
   cursor: pointer;
+  margin-left: 35px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(84, 55, 134, 1);
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  color: rgba(84, 55, 134, 1);
 }
 
-.course-content .btn-theme:hover {
+
+.btn-theme:hover {
   color: rgba(84, 55, 134, 1);
   background-color: rgba(255, 205, 78, 1);
 }
@@ -391,26 +394,37 @@ textarea {
 ::file-selector-button {
   display: none;
 }
+
 /* -----------------for editor------------------ */
 /* Styling the form container */
 .form1 {
   /* Use flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  width: 63%; /* Adjust the width of the form */
-  background-color: #ffffff; /* Light background color */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  width: 63%;
+  /* Adjust the width of the form */
+  background-color: #ffffff;
+  /* Light background color */
   border: 2px solid rgb(217, 217, 217);
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  margin: 0 auto; /* Center the form container on the page */
-  padding: 20px; /* Add padding */
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Shadow effect */
+  margin: 0 auto;
+  /* Center the form container on the page */
+  padding: 20px;
+  /* Add padding */
 }
 
 /* Styling the editor container */
 #editor-container {
   width: 100%;
-  height: 400px; /* Adjust the height as needed */
-  border: 1px solid rgb(217, 217, 217); /* Border color */
+  height: 400px;
+  /* Adjust the height as needed */
+  border: 1px solid rgb(217, 217, 217);
+  /* Border color */
   margin-bottom: 10px;
   box-sizing: border-box;
   overflow-y: auto;
@@ -427,8 +441,10 @@ textarea {
   text-transform: capitalize;
   transition: all 0.5s ease;
   box-shadow: black;
-  display: block; /* Ensure the button is a block-level element */
-  margin: 20px auto; /* Center the button and add spacing */
+  display: block;
+  /* Ensure the button is a block-level element */
+  margin: 20px auto;
+  /* Center the button and add spacing */
   cursor: pointer;
 }
 
@@ -518,6 +534,7 @@ body {
   line-height: 1.6;
   border-radius: 12px;
 }
+
 /* Hide sections initially */
 #content,
 #video,
@@ -580,27 +597,39 @@ body {
 }
 
 
-.edit-section, .edit-lesson {
-  color: rgb(111, 188, 255); /* Blue color for the edit icon */
-  cursor: pointer; /* Ensures the cursor becomes a pointer when hovering over the icon */
-  margin-right: 10px; /* Adds space between the delete icon and the title */
+.edit-section,
+.edit-lesson {
+  color: rgb(111, 188, 255);
+  /* Blue color for the edit icon */
+  cursor: pointer;
+  /* Ensures the cursor becomes a pointer when hovering over the icon */
+  margin-right: 10px;
+  /* Adds space between the delete icon and the title */
 
 }
 
-.delete-section, .delete-lesson {
-  color: rgb(255, 54, 54); /* Red color for the delete icon */
-  cursor: pointer; /* Ensures the cursor becomes a pointer when hovering over the icon */
-  margin-right: 10px; /* Adds space between the delete icon and the title */
+.delete-section,
+.delete-lesson {
+  color: rgb(255, 54, 54);
+  /* Red color for the delete icon */
+  cursor: pointer;
+  /* Ensures the cursor becomes a pointer when hovering over the icon */
+  margin-right: 10px;
+  /* Adds space between the delete icon and the title */
 }
 
 .sectionTitle {
-  font-weight: bold; /* Makes the section title bold */
-  display: inline-block; /* Makes the title align properly with icons */
-  margin-left: 10px; /* Adds space after the icons */
+  font-weight: bold;
+  /* Makes the section title bold */
+  display: inline-block;
+  /* Makes the title align properly with icons */
+  margin-left: 10px;
+  /* Adds space after the icons */
 }
 
 .fas.fa-caret-down {
-  margin-left: 5px; /* Small gap between the title and caret icon */
+  margin-left: 5px;
+  /* Small gap between the title and caret icon */
 }
 
 .lesson-container {
@@ -609,12 +638,13 @@ body {
 }
 
 
-.edit-lesson, .delete-lesson {
-  margin-right: 8px; /* Space between icons and the link */
+.edit-lesson,
+.delete-lesson {
+  margin-right: 8px;
+  /* Space between icons and the link */
   cursor: pointer;
 }
 
-.addLessonBtn{
+.addLessonBtn {
   background-color: #ab90e487;
 }
-

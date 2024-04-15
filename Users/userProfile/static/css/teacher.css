@@ -395,108 +395,205 @@
 
 /* --------------------------------------pop-up create new course --------------------------------- */
 /* Style the modal - hidden by default */
-     /* Style the modal - hidden by default */
-     .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgba(0, 0, 0, 0.4)/* Enable opacity */
-        }
-        
-        /* Modal Content */
-        .modal-content {
-        margin: 15% auto; /* 15% from the top and centered */
-        width: 40%; /* Could be wider or narrower */
-        padding: 0px 50px 50px 50px;
-        border: 3px solid #513886;
-        border-radius: 30px;
-        background-color: #fff; /* White */
-        position: relative; /* To position the close button */
-        animation-name: zoom;
-        animation-duration: 0.6s;
-        }
-        
-        /* Add a zoom animation */
-        @keyframes zoom {
-        from {transform: scale(0, 0);} /* Start from 0 scale */
-        to {transform: scale(1, 1);} /* Scale to 100% */
-        }
-        
-        /* Style the close button */
-        .close {
-        color: #513886;
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        font-size: 36px;
-        font-weight: bold;
-        cursor: pointer;
-        }
-        
-        /* Style the create course button */
-        .createCourseBtn {
-        background-color: #513886; /* Apply the specified color */
-        color: #fff;
-        font-size: 20px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%; /* Make it the same width as inputs */
-        margin-top: 10px;/* Add space after form */
-        }
-        
-        /* Style form elements */
-        
-        .label-Course{
-        color: #513886; /* Apply the specified color to labels */
-        font-weight: 100;
-        z-index: 100;
-        float: left;
-        height: 20px;
-        line-height: 20px;
-        position: relative;
-        left: 15px;
-        top: 9px;
-        background-color: #ffffff;
-        font-size: 18px;
-        }
-        
-        .Ctext,
-        textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1.9px solid #513886;
-        border-radius: 7px;
-        box-sizing: border-box; 
-        margin-bottom: 10px;
-        line-height: 3ex;
-        position: relative;
-        }
-        
-        
-        select {
-        width: 100%;
-        padding: 5px;
-        padding-left: 10px;
-        border: 2px solid #513886;
-        border-radius: 7px;
-        box-sizing: border-box; /* Include padding in width */
-        margin-bottom: 10px;
-        line-height: 5ex;
-        -webkit-appearance: none;
-        }
-        
-        .title-create-coures{
-        color: #513886; /* Apply the specified color to h2 */
-        font-size: 48px; /* Adjust font size */
-        }
-        ::file-selector-button {
-        display: none;
-        }
-        
+/* Style the modal - hidden by default */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4)
+        /* Enable opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    width: 40%;
+    /* Could be wider or narrower */
+    padding: 0px 50px 50px 50px;
+    border: 3px solid #513886;
+    border-radius: 30px;
+    background-color: #fff;
+    /* White */
+    position: relative;
+    /* To position the close button */
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+/* Add a zoom animation */
+@keyframes zoom {
+    from {
+        transform: scale(0, 0);
+    }
+
+    /* Start from 0 scale */
+    to {
+        transform: scale(1, 1);
+    }
+
+    /* Scale to 100% */
+}
+
+/* Style the close button */
+.close {
+    color: #513886;
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style the create course button */
+.createCourseBtn {
+    background-color: #513886;
+    /* Apply the specified color */
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    /* Make it the same width as inputs */
+    margin-top: 10px;
+    /* Add space after form */
+}
+
+/* Style form elements */
+
+.label-Course {
+    color: #513886;
+    /* Apply the specified color to labels */
+    font-weight: 100;
+    z-index: 100;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    left: 15px;
+    top: 9px;
+    background-color: #ffffff;
+    font-size: 18px;
+}
+
+.Ctext,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1.9px solid #513886;
+    border-radius: 7px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    line-height: 3ex;
+    position: relative;
+}
+
+
+select {
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    border: 2px solid #513886;
+    border-radius: 7px;
+    box-sizing: border-box;
+    /* Include padding in width */
+    margin-bottom: 10px;
+    line-height: 5ex;
+    -webkit-appearance: none;
+}
+
+.title-create-coures {
+    color: #513886;
+    /* Apply the specified color to h2 */
+    font-size: 48px;
+    /* Adjust font size */
+}
+
+::file-selector-button {
+    display: none;
+}
+
+/* -------------------for menu (view, edit, and delete)------------------------------- */
+
+/* Hamburger menu styles */
+.hamburger-menu {
+    position: relative;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 24px;
+    left: 0;
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 150px;
+}
+
+.menu-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-content li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-content li:hover {
+    background-color: #ddd;
+}
+
+/* Popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.button-group button {
+    padding: 8px 12px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: #f0f0f0;
+}
