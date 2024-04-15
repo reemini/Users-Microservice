@@ -38,7 +38,7 @@ $(document).ready(function () {
       .css("display", "block"); // Store it in the modal for later use
   });
 
-  // add section part
+  // Add section part
   $("#createSectionBtn").click(function () {
     $("#createSectionModal").css("display", "block");
   });
@@ -134,21 +134,6 @@ $(document).ready(function () {
       success: function (lesson) {
         $("#createLessonModal").css("display", "none");
         appendNewLessonToUI(lesson, sectionId);
-        var $lessonsList = $('li.list-sidenev[data-section-id="' + sectionId + '"]').find(".feat-show");
-        // Create the new lesson element with lesson ID
-    var $lessonItem = $("<li>").data("lesson-id", lesson.id);  // Set lesson ID here
-    var $lessonLink = $("<a>")
-        .addClass("lessonTitle")
-        .attr("href", "#")
-        .text(lesson.title)
-        .data("content", lesson.contents || []);
-    $lessonItem.append($lessonLink);
-
-    // Append the new lesson to the list
-    $lessonsList.append($lessonItem);
-        
-        
-        // Call to a new function to handle UI update
         alert("Lesson added successfully!");
       },
       error: function (xhr) {
@@ -158,32 +143,22 @@ $(document).ready(function () {
     });
   });
 
-  // Function to append the new lesson to the UI under the correct section
   function appendNewLessonToUI(lesson, sectionId) {
-    // Find the section list where the lesson needs to be added
-    var $lessonsList = $(
-      'li.list-sidenev[data-section-id="' + sectionId + '"]'
-    ).find(".feat-show");
-
-    // Create the new lesson element
+    var $lessonsList = $('li.list-sidenev[data-section-id="' + sectionId + '"]').find(".feat-show");
+    // Create the new lesson element with lesson ID
+    var $lessonItem = $("<li>").data("lesson-id", lesson.id);
     var $lessonLink = $("<a>")
       .addClass("lessonTitle")
       .attr("href", "#")
       .text(lesson.title)
       .data("content", lesson.contents || []);
-    var $lessonItem = $("<li>").append($lessonLink);
+    $lessonItem.append($lessonLink);
 
     // Append the new lesson to the list
     $lessonsList.append($lessonItem);
   }
 
   // Fetch and update course details dynamically
-  function getCourseIdFromURL() {
-    const pathname = window.location.pathname;
-    const segments = pathname.split("/");
-    return segments[segments.length - 2];
-  }
-
   function fetchCourseDetails() {
     const courseId = getCourseIdFromURL(); // Ensure this ID is fetched correctly
     $.ajax({
@@ -245,7 +220,7 @@ $(document).ready(function () {
       );
 
       section.lessons.forEach(function (lesson) {
-        var $lessonItem = $("<li>");
+        var $lessonItem = $("<li>").data("lesson-id", lesson.id);
         var $lessonContainer = $("<div>").addClass("lesson-container");
 
         var editIcon = $("<span>")
@@ -329,41 +304,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 // Adjust AJAX calls for deleting sections
-$(document).on("click", ".delete-section", function() {
-    var sectionId = $(this).closest("li.list-sidenev").data("section-id");
-    if(confirm("Are you sure you want to delete this section?")) {
-        $.ajax({
-            url: `/deleteSection/api/${sectionId}/`,  // Updated to Users microservice URL
-            type: "DELETE",
-            success: function() {
-                alert("Section deleted successfully!");
-                window.location.reload();  // Reload the page or dynamically remove the section from UI
-            },
-            error: function(xhr) {
-                alert("Failed to delete the section.");
-                console.error("Error:", xhr.responseText);
-            }
-        });
-    }
+$(document).on("click", ".delete-section", function () {
+  var sectionId = $(this).closest("li.list-sidenev").data("section-id");
+  if (confirm("Are you sure you want to delete this section?")) {
+    $.ajax({
+      url: `/deleteSection/api/${sectionId}/`, // Updated to Users microservice URL
+      type: "DELETE",
+      success: function () {
+        alert("Section deleted successfully!");
+        window.location.reload(); // Reload the page or dynamically remove the section from UI
+      },
+      error: function (xhr) {
+        alert("Failed to delete the section.");
+        console.error("Error:", xhr.responseText);
+      },
+    });
+  }
 });
 
 // Adjust AJAX calls for deleting lessons
-$(document).on("click", ".delete-lesson", function() {
-  var lessonId = $(this).closest("li").data("lesson-id");  // Retrieve lesson ID correctly
-  if(confirm("Are you sure you want to delete this lesson?")) {
-        $.ajax({
-            url: `/deleteLesson/api/${lessonId}/`,  // Updated to Users microservice URL
-            type: "DELETE",
-            success: function() {
-                alert("Lesson deleted successfully!");
-                window.location.reload();  // Reload the page or dynamically remove the lesson from UI
-            },
-            error: function(xhr) {
-                alert("Failed to delete the lesson.");
-                console.error("Error:", xhr.responseText);
-            }
-        });
-    }
+$(document).on("click", ".delete-lesson", function () {
+  var lessonId = $(this).closest("li").data("lesson-id"); // Retrieve lesson ID correctly
+  console.log(lessonId);  // Check if this is undefined
+
+  if (lessonId && confirm("Are you sure you want to delete this lesson?")) {
+    $.ajax({
+      url: `/deleteLesson/api/${lessonId}/`, // Updated to Users microservice URL
+      type: "DELETE",
+      success: function () {
+        alert("Lesson deleted successfully!");
+        window.location.reload(); // Reload the page or dynamically remove the lesson from UI
+      },
+      error: function (xhr) {
+        alert("Failed to delete the lesson.");
+        console.error("Error:", xhr.responseText);
+      },
+    });
+  }
 });

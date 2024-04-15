@@ -136,9 +136,7 @@ class DeleteLessonView(APIView):
         # Construct the URL to the Courses service
         courses_service_url = settings.COURSES_SERVICE_URL
         url = f"{courses_service_url}/courses/deleteLessons/{lesson_id}/"
-
         # Forward the DELETE request to the Courses microservice
         response = requests.delete(url)
-
         # Return the same response status and data
         return Response(status=response.status_code, data=response.json() if response.content else None)
