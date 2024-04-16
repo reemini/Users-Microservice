@@ -105,6 +105,61 @@
       <div class="sections">
         <div id="MyPublishedCourses" class="section">
           <div class="course-section">
+              <div class="course-info" onclick="window.location.href='edit-profile.html'">
+                  <!-- Course content -->
+                  <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
+                  <div class="course-title">ALRHAZ</div>
+                  <div class="course-details">
+                      <div class="category-type">science</div>
+                      <div class="hours"><span class="emoji">&#9200;</span> 20 hours</div>
+                      <div class="students"><span class="emoji">&#128100;</span> 500</div>
+                      <div class="instructor"><span class="emoji">&#128188;</span> John Doe</div>
+                      <div class="reviews">
+                          ⭐⭐⭐⭐⭐ <!-- Unicode stars for ratings -->
+                          <p>1K</p> <!-- Number of reviews -->
+                      </div>
+                  </div>
+              </div>
+
+              <div class="course-info" onclick="window.location.href='edit-profile.html'">
+                <!-- Course content -->
+                <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
+                <div class="course-title">ALRHAZ</div>
+                <div class="course-details">
+                    <div class="category-type">science</div>
+                    <div class="hours"><span class="emoji">&#9200;</span> 20 hours</div>
+                    <div class="students"><span class="emoji">&#128100;</span> 500</div>
+                    <div class="completion">80%</div> <!-- Percentage of completion -->
+                    <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
+                    <div class="instructor"><span class="emoji">&#128188;</span> John Doe</div>
+                    <div class="reviews">
+                        ⭐⭐⭐⭐⭐ <!-- Unicode stars for ratings -->
+                        <p>1K</p> <!-- Number of reviews -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-info" onclick="window.location.href='edit-profile.html'">
+              <!-- Course content -->
+              <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
+              <div class="course-title">ALRHAZ</div>
+              <div class="course-details">
+                  <div class="category-type">science</div>
+                  <div class="hours"><span class="emoji">&#9200;</span> 20 hours</div>
+                  <div class="students"><span class="emoji">&#128100;</span> 500</div>
+                  <div class="completion">80%</div> <!-- Percentage of completion -->
+                  <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
+                  <div class="instructor"><span class="emoji">&#128188;</span> John Doe</div>
+                  <div class="reviews">
+                      ⭐⭐⭐⭐⭐ <!-- Unicode stars for ratings -->
+                      <p>1K</p> <!-- Number of reviews -->
+                  </div>
+              </div>
+          </div>
+
+
+
+
             <div class="hamburger-menu">
               <div class="menu-icon" onclick="toggleMenu()">☰</div>
               <div class="menu-content" id="menu-content">
@@ -296,6 +351,6 @@
     const STATIC_URL = "{% static '' %}";
   </script>
 
-  <script src="{% static 'js/tchProfile.js' %}"></script>
+  <!-- <script src="{% static 'js/tchProfile.js' %}"></script> -->
 </body>
 {% endblock %}
