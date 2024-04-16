@@ -146,3 +146,6 @@ class DeleteLessonView(APIView):
 
 def editQuiz(request):
     return render(request,'editQuiz.html')
+
+def viewQuiz(request):
+    return render(request,'viewQuiz.html')
