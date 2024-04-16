@@ -24,7 +24,8 @@ urlpatterns = [
     path('editContent/api/', ContentProxyView.as_view(), name='proxy-content-create'),
     path('editContent/api/<int:id>/', ContentProxyView.as_view(), name='proxy-content-update'),
 
-    # path('editQuiz',views.editQuiz, name = 'editQuiz'),
+    path('editQuiz',editQuiz, name = 'editQuiz'),
+    path('viewQuiz',viewQuiz, name = 'viewQuiz'),
 
 ]   
 
