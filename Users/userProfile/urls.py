@@ -25,6 +25,7 @@ urlpatterns = [
     path('editProfile/api/', EditStudentProfileView.as_view(), name='editProfileAPI'),
     path('editTchProfile/', editTchProfile, name='editTchProfile'),
     path('editTchrProfile/api/', EditTeacherProfileView.as_view(), name='editTchrProfileAPI'),
+    #STT path('speech/recognition/', convert_speech_to_text, name='speech_recognition'),
 
     
 

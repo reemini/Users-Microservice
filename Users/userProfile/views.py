@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from django.core.signing import BadSignature, Signer
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from .utils import send_verification_email
 from django.contrib.auth import get_user_model
@@ -20,6 +20,7 @@ from .tokens import account_activation_token
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils.encoding import force_str
+
 
 
 from .models import CustomUser, Student, Educator  
@@ -316,3 +317,26 @@ class EditTeacherProfileView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+'''
+#STT
+from django.http import JsonResponse
+import pyttsx3
+def convert_speech_to_text(request):
+    # Initialize the speech recognition engine
+    engine = pyttsx3.init()
+    engine.say("Please start speaking.")
+    engine.runAndWait()
+
+    # Capture user's speech input
+    recognizer = pyttsx3.Recognizer()
+    with pyttsx3.Microphone() as source:
+        audio = recognizer.listen(source)
+
+    try:
+        # Convert speech to text
+        text = recognizer.recognize_google(audio)
+        return JsonResponse({'text': text})
+    except Exception as e:
+        return JsonResponse({'error': str(e)})
+'''
