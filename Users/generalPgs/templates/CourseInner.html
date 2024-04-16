@@ -26,7 +26,6 @@
       href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
       rel="stylesheet"
     />
-    
   </head>
 
   <body>
@@ -41,25 +40,50 @@
       <!-- sections + lessons part -->
       <button class="btn-theme" id="createSectionBtn">Add New Section</button>
 
-      <ul>
-
-      </ul>
+      <ul></ul>
     </nav>
 
-    <div  class="course-content" style="display: none;">
-      <img
-        class="coures-inner-img"
-        src=""
-        alt=""
-      />
+    <div class="course-content" style="display: none">
+      <img class="coures-inner-img" src="" alt="" />
       <div class="header">
         <h1 class="Course-Title"></h1>
         <div class="courese-info">
           <h3 class="Course-topic"></h3>
           <h3 class="Course-deficality"></h3>
         </div>
-        <p class="Course-description">
-        </p>
+        <p class="Course-description"></p>
+      </div>
+    </div>
+
+    <!-- for edit lesson  -->
+    <div class="modal" id="editLessonModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="title-edit-Lesson">
+          Edit Lesson Title<i
+            class="fa-solid fa-microphone-lines"
+            style="color: #513886"
+          ></i>
+        </h2>
+        <form id="editLessonForm">
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="{{ csrf_token }}"
+          />
+
+          <label class="label-Course" for="editlessonTitle"
+            >Lesson Title:</label
+          >
+          <input
+            class="Ctext"
+            type="text"
+            id="editlessonTitle"
+            name="editlessonTitle"
+            placeholder="Enter lesson title.."
+          />
+          <button type="submit" class="editLessonBtn">Edit</button>
+        </form>
       </div>
     </div>
 
@@ -74,7 +98,11 @@
           ></i>
         </h2>
         <form id="sectionForm">
-          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="{{ csrf_token }}"
+          />
 
           <label class="label-Course" for="sectionTitle">Section Title:</label>
           <input
@@ -84,7 +112,9 @@
             name="sectionTitle"
             placeholder="Enter section title.."
           />
-          <label class="label-Course" for="sectionDesc">Section Description:</label>
+          <label class="label-Course" for="sectionDesc"
+            >Section Description:</label
+          >
 
           <input
             class="Ctext"
@@ -94,6 +124,47 @@
             placeholder="Enter section description.."
           />
           <button type="submit" class="createSectionBtn">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- for edit section  -->
+    <div class="modal" id="editSectionModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="title-edit-Section">
+          Edit Section<i
+            class="fa-solid fa-microphone-lines"
+            style="color: #513886"
+          ></i>
+        </h2>
+        <form id="editSectionForm">
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="{{ csrf_token }}"
+          />
+
+          <label class="label-Course" for="editSectionTitle">Section Title:</label>
+          <input
+            class="Ctext"
+            type="text"
+            id="editSectionTitle"
+            name="editSectionTitle"
+            placeholder="Enter section title.."
+          />
+          <label class="label-Course" for="editSectionDesc"
+            >Section Description:</label
+          >
+
+          <input
+            class="Ctext"
+            type="text"
+            id="editSectionDesc"
+            name="editSectionDesc"
+            placeholder="Enter section description.."
+          />
+          <button type="submit" class="editSectionBtn">Edit</button>
         </form>
       </div>
     </div>
@@ -109,7 +180,11 @@
           ></i>
         </h2>
         <form id="lessonForm">
-          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="{{ csrf_token }}"
+          />
 
           <label class="label-Course" for="lessonTitle">Lesson Title:</label>
           <input
@@ -123,17 +198,20 @@
         </form>
       </div>
     </div>
-    <br>
+
+    <br />
     <!-- for the editor -->
-    <div action="" class="form1" style="display: none;">
+    <div action="" class="form1" style="display: none">
       <!-- Replace the input field with textarea -->
-      <textarea id="description" name="description" style="display: none;"></textarea>
+      <textarea
+        id="description"
+        name="description"
+        style="display: none"
+      ></textarea>
       <!-- Add a div to hold the Quill editor -->
       <div id="editor-container"></div>
       <button class="btn-theme-inner">Edit</button>
     </div>
-
-    <script></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <!-- custom js link -->

@@ -1,10 +1,18 @@
+// Ensuring the DOM is fully loaded before executing the script
+
 $(document).ready(function () {
+  // Sets up global AJAX request settings, particularly for CSRF token handling
+
   $.ajaxSetup({
     beforeSend: function (xhr, settings) {
+      // Check if the method needs CSRF protection and if it's not a cross-domain request
+
       if (
         !/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) &&
         !this.crossDomain
       ) {
+        // Set CSRF token header for the request from hidden form field
+
         xhr.setRequestHeader(
           "X-CSRFToken",
           $('input[name="csrfmiddlewaretoken"]').val()
@@ -13,24 +21,25 @@ $(document).ready(function () {
     },
   });
 
-  // Sidebar toggle
+  // Toggle sidebar visibility when button with class `btn` is clicked
   $(".btn").click(function () {
     $(".sidebar").toggleClass("collapsed");
   });
 
-  // Use event delegation for dynamically created `.feat-btn`
+  // Toggle visibility of features under `.feat-btn` using event delegation
   $(document).on("click", ".feat-btn", function () {
-    $(this).next(".feat-show").slideToggle();
+    // Since the `.feat-show` is no longer the direct next sibling, adjust the selector
+    $(this).closest("li").find(".feat-show").slideToggle();
     $(this).find(".fa-caret-down").toggleClass("rotate");
   });
 
-  // Since you have similar functionality, consolidate your handling for both feat-btn and serv-btn
+  // Similar toggle functionality for `.serv-btn` elements
   $(document).on("click", ".serv-btn", function () {
     $(this).next(".serv-show").slideToggle();
     $(this).find(".fa-caret-down").toggleClass("rotate");
   });
 
-  // Modal toggle for lessons
+  // Opens modal and stores section ID when `.addLessonBtn` is clicked
   $(document).on("click", ".addLessonBtn", function () {
     var sectionId = $(this).closest("li.list-sidenev").data("section-id"); // Retrieve the section ID
     $("#createLessonModal")
@@ -38,15 +47,16 @@ $(document).ready(function () {
       .css("display", "block"); // Store it in the modal for later use
   });
 
-  // Add section part
+  // Display the create section modal
   $("#createSectionBtn").click(function () {
     $("#createSectionModal").css("display", "block");
   });
 
-  // Closing modals
+  // Close modal windows
   $(".close").click(function () {
     $(this).closest(".modal").css("display", "none");
   });
+  // Close modals by clicking outside of them
 
   window.onclick = function (event) {
     if (event.target == document.getElementById("createSectionModal")) {
@@ -57,21 +67,18 @@ $(document).ready(function () {
     }
   };
 
-  // Form submissions for sections and lessons
+  // Form submission handler for sections, preventing default form behavior
   $("#sectionForm").submit(function (event) {
     event.preventDefault();
-    const courseId = getCourseIdFromURL(); // Assuming this function is defined to extract the course ID from URL
-
+    const courseId = getCourseIdFromURL();
     var sectionTitle = $("#sectionTitle").val();
     var sectionDesc = $("#sectionDesc").val();
-
-    // Construct the data object
     var postData = {
       title: sectionTitle,
       description: sectionDesc,
     };
 
-    // Perform the AJAX POST request
+    // AJAX POST request to add a new section
     $.ajax({
       url: `/addSection/api/${courseId}/`, // Adjust this URL to your API endpoint
       type: "POST",
@@ -88,6 +95,8 @@ $(document).ready(function () {
       },
     });
   });
+
+  // Function to append a new section to the UI dynamically
 
   function appendNewSectionToUI(section) {
     var $sectionList = $(".sidebar > ul");
@@ -115,16 +124,21 @@ $(document).ready(function () {
     $sectionList.append($section);
   }
 
+  // Function to extract course ID from the URL
   function getCourseIdFromURL() {
     var pathname = window.location.pathname;
     var segments = pathname.split("/");
     return segments[segments.length - 2]; // Adjust if necessary based on your URL structure
   }
 
+  // Form submission handler for lessons, preventing default behavior
+
   $("#lessonForm").submit(function (event) {
     event.preventDefault();
     var sectionId = $("#createLessonModal").data("sectionId"); // Retrieve the stored section ID
     var lessonTitle = $("#lessonTitle").val();
+
+    // AJAX POST request to add a new lesson
 
     $.ajax({
       url: `/addLesson/api/${sectionId}/`,
@@ -143,8 +157,12 @@ $(document).ready(function () {
     });
   });
 
+  // Function to append a new lesson to the UI dynamically
+
   function appendNewLessonToUI(lesson, sectionId) {
-    var $lessonsList = $('li.list-sidenev[data-section-id="' + sectionId + '"]').find(".feat-show");
+    var $lessonsList = $(
+      'li.list-sidenev[data-section-id="' + sectionId + '"]'
+    ).find(".feat-show");
     // Create the new lesson element with lesson ID
     var $lessonItem = $("<li>").data("lesson-id", lesson.id);
     var $lessonLink = $("<a>")
@@ -153,12 +171,10 @@ $(document).ready(function () {
       .text(lesson.title)
       .data("content", lesson.contents || []);
     $lessonItem.append($lessonLink);
-
-    // Append the new lesson to the list
     $lessonsList.append($lessonItem);
   }
 
-  // Fetch and update course details dynamically
+  // Function to fetch course details and update UI dynamically
   function fetchCourseDetails() {
     const courseId = getCourseIdFromURL(); // Ensure this ID is fetched correctly
     $.ajax({
@@ -173,6 +189,8 @@ $(document).ready(function () {
       },
     });
   }
+
+  // Function to update course details in the UI based on fetched data
 
   function updateCourseDetails(course) {
     $(".courseTitle").text(course.title);
@@ -192,21 +210,29 @@ $(document).ready(function () {
         .addClass("list-sidenev")
         .data("section-id", section.id);
 
+      // Create a container for the section title and icons
+      var sectionContainer = $("<div>").addClass("section-container");
+
       var editIcon = $("<span>")
         .addClass("fas fa-edit edit-section")
-        .attr("title", "Edit Section");
+        .attr("title", "Edit Section")
+        .data("section-id", section.id); // Ensure the icon carries the section ID for functionality
+
       var deleteIcon = $("<span>")
         .addClass("fas fa-trash delete-section")
-        .attr("title", "Delete Section");
+        .attr("title", "Delete Section")
+        .data("section-id", section.id); // Ensure the icon carries the section ID for functionality
+
       var sectionLink = $("<a>")
         .addClass("sectionTitle a-sidenev feat-btn")
-        .attr("href", "#");
+        .attr("href", "#")
+        .attr("data-description", section.description) // Store the description here
+        .text(section.title); // Append the text directly
 
-      sectionLink
-        .append(editIcon)
-        .append(deleteIcon)
-        .append(document.createTextNode(section.title)) // Ensure text is appended after icons
-        .append($("<span>").addClass("fas fa-caret-down first")); // Caret icon
+      sectionLink.append($("<span>").addClass("fas fa-caret-down first")); // Caret icon
+
+      // Append the icons and title to the section container
+      sectionContainer.append(editIcon, deleteIcon, sectionLink);
 
       var lessonsList = $("<ul>").addClass("feat-show").css("display", "none");
 
@@ -238,65 +264,194 @@ $(document).ready(function () {
           .attr("href", "#")
           .data("content", lesson.contents)
           .data("lesson-id", lesson.id)
-          // Store the entire contents array
           .text(lesson.title);
-        $lessonContainer.append(editIcon, deleteIcon, $lessonLink);
 
-        // Append the container to the list item
+        $lessonContainer.append(editIcon, deleteIcon, $lessonLink);
         $lessonItem.append($lessonContainer);
         lessonsList.append($lessonItem);
       });
 
-      sectionEl.append(sectionLink).append(lessonsList);
+      // Append the section container and lessons list to the section element
+      sectionEl.append(sectionContainer).append(lessonsList);
       $(".sidebar > ul").append(sectionEl);
     });
   }
 
+  // Initial fetch of course details to populate UI
+
   fetchCourseDetails();
 
-  // Hide both sections initially (if not already hidden by CSS)
+  // Initially hide course content and form sections
   $(".course-content").hide();
   $(".form1").hide();
 
-  // Toggle course content visibility on clicking the course title
+  // Toggle visibility of course content on clicking the course title
   $("#courseTitle").click(function () {
     $(".course-content").slideToggle(); // Toggle visibility of course content
     $(".form1").hide(); // Ensure the editor is hidden
   });
 
-  // Show editor and load content when a lesson title is clicked
+  // Load content into the editor when a lesson title is clicked
   $(document).on("click", ".lessonTitle", function () {
-    $(".course-content").hide(); // Hide course content
-    $(".form1").show(); // Make sure the editor is shown
-    // Retrieve the lesson contents array from the data attribute
-    var contents = $(this).data("content"); // This is an array of objects
+    var lessonId = $(this).data("lesson-id");
+    var contents = $(this).data("content") || [];  // This should be structured data or plain text
 
-    // Create a string from the contents array
-    var contentString = contents.map((content) => content.reference).join(" "); // Join all references with a space
+    // Clear the existing contents of the Quill editor
+    quill.setContents([]);  // This is the correct Quill method to clear all contents
 
-    // Update the Quill editor with the content
-    if (quill) {
-      quill.root.innerHTML = contentString; // Load the concatenated string into Quill
-    } else {
-      console.error("Quill not initialized");
-    }
+    if (contents.length > 0) {
+      var firstContent = contents[0];  // We use the first content item
+      quill.clipboard.dangerouslyPasteHTML(0, firstContent.reference);
+      $('#editor-container').data('content-id', firstContent.id);  // Store the content ID
+  } else {
+      quill.setText('');
+      $('#editor-container').removeData('content-id');  // No content ID if there's no content
+  }
+    $('#editor-container').data('lesson-id', lessonId);  // Store the lesson ID for further operations
+    $(".course-content").hide();
+    $(".form1").show();  // Display the editor section
+
+    $('#editor-container').data('lesson-id', lessonId);  // Set the lesson ID for saving changes
+});
+
+  $(document).on("click", ".edit-lesson", function () {
+    var lessonId = $(this).data("lesson-id"); // Retrieve the lesson ID stored in the icon's data attribute
+    var currentTitle = $(this).siblings(".lessonTitle").text(); // Assuming the title is in an element with class 'lessonTitle' near the icon
+
+    // Fill in the modal inputs
+    $("#editLessonModal #editlessonTitle").val(currentTitle);
+    $("#editLessonModal").data("lessonId", lessonId); // Store the lesson ID in the modal for later use
+
+    // Show the modal
+    $("#editLessonModal").css("display", "block");
+  });
+
+  // Event listener for opening the edit section modal
+  $(document).on("click", ".edit-section", function () {
+    var sectionId = $(this).data("section-id"); // Retrieve the section ID stored in the icon's data attribute
+    var currentTitle = $(this)
+      .closest(".section-container")
+      .find(".sectionTitle")
+      .text();
+      var currentDescription = $(this).closest('.section-container').find('.sectionTitle').data('description');
+
+    // Fill in the modal inputs
+    $("#editSectionModal #editSectionTitle").val(currentTitle);
+    $("#editSectionModal #editSectionDesc").val(currentDescription);
+    $("#editSectionModal").data("sectionId", sectionId); // Store the section ID in the modal for later use
+
+    // Show the modal
+    $("#editSectionModal").css("display", "block");
+  });
+
+  $("#editLessonForm").submit(function (event) {
+    event.preventDefault();
+    var lessonId = $("#editLessonModal").data("lessonId"); // Retrieve the stored lesson ID
+    var newTitle = $("#editLessonModal #editlessonTitle").val();
+
+    // AJAX POST request to update the lesson
+    $.ajax({
+      url: `/editLesson/api/${lessonId}/`, // API endpoint for updating lesson
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ title: newTitle }),
+      success: function (response) {
+        // Update the lesson title in the UI
+        $('li[data-lesson-id="' + lessonId + '"] .editlessonTitle').text(
+          newTitle
+        );
+        $("#editLessonModal").css("display", "none");
+        alert("Lesson updated successfully!");
+      },
+      error: function (xhr) {
+        alert("Failed to update the lesson. Please try again.");
+        console.error("Error:", xhr.responseText);
+      },
+    });
+  });
+
+  // Event listener for the form submission to update section info
+  $("#editSectionForm").submit(function (event) {
+    event.preventDefault();
+    var sectionId = $("#editSectionModal").data("sectionId");
+    var newTitle = $("#editSectionTitle").val();
+    var newDescription = $("#editSectionDesc").val();
+
+    // AJAX POST request to update the section
+    $.ajax({
+      url: `/editSection/api/${sectionId}/`, // Adjust URL to your API endpoint
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ title: newTitle, description: newDescription }),
+      success: function (response) {
+        // Update the section details in the UI
+        $('li[data-section-id="' + sectionId + '"] .sectionTitle').text(
+          newTitle
+        );
+        // Assuming you have a way to update the description in the UI
+        $("#editSectionModal").css("display", "none");
+        alert("Section updated successfully!");
+      },
+      error: function (xhr) {
+        alert("Failed to update the section. Please try again.");
+        console.error("Error:", xhr.responseText);
+      },
+    });
   });
 });
 
-/////
-// for the editor-------------------------------------------------------------
-// Initialize Quill.js on the editor container
+// Quill.js editor initialization for rich text editing
 var quill = new Quill("#editor-container", {
   theme: "snow", // Specify theme, 'snow' is one of the built-in themes
 });
 
-// Listen for form submission
+function saveContent() {
+  var contentHtml = quill.root.innerHTML;
+  var plainText = contentHtml.replace(/<[^>]+>/g, '');  // Regex to remove HTML tags
+
+  var contentId = $('#editor-container').data('content-id');
+  var lessonId = $('#editor-container').data('lesson-id');
+
+  if (!lessonId) {
+    alert("Lesson ID is not set. Please make sure you're editing a lesson.");
+    return;
+}
+
+  var url = '/editContent/api/' + (contentId ? contentId + '/' : '');  // Adjusting URL based on whether updating or creating
+  var method = contentId ? 'PUT' : 'POST';
+
+  $.ajax({
+      url: url,
+      type: method,
+      contentType: 'application/json',
+      data: JSON.stringify({
+          id: contentId,
+          lesson_id: lessonId,
+          type: 'txt',
+          reference: plainText  
+      }),
+      success: function(response) {
+          console.log('Content saved successfully:', response);
+          alert('Content saved successfully!');
+          if (!contentId) {
+              $('#editor-container').data('content-id', response.id);  // Set new content ID if created
+          }
+      },
+      error: function(xhr) {
+          console.error('Failed to save content:', xhr.responseText);
+          alert('Failed to save content. Please try again.');
+      }
+  });
+}
+
+
+document.querySelector('.btn-theme-inner').addEventListener('click', saveContent);
+
+
+// Handling form submission with rich text data
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("form").addEventListener("submit", function (event) {
-    // Get Quill's HTML content
     var descriptionHtml = document.querySelector(".ql-editor").innerHTML;
-
-    // Set the HTML content to the hidden input field
     var descriptionTextArea = document.querySelector(
       'textarea[name="description"]'
     );
@@ -304,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Adjust AJAX calls for deleting sections
+// AJAX calls for deleting sections with confirmation
 $(document).on("click", ".delete-section", function () {
   var sectionId = $(this).closest("li.list-sidenev").data("section-id");
   if (confirm("Are you sure you want to delete this section?")) {
@@ -323,10 +478,10 @@ $(document).on("click", ".delete-section", function () {
   }
 });
 
-// Adjust AJAX calls for deleting lessons
+// AJAX calls for deleting lessons with lesson ID retrieval and confirmation
 $(document).on("click", ".delete-lesson", function () {
   var lessonId = $(this).closest("li").data("lesson-id"); // Retrieve lesson ID correctly
-  console.log(lessonId);  // Check if this is undefined
+  console.log(lessonId);
 
   if (lessonId && confirm("Are you sure you want to delete this lesson?")) {
     $.ajax({
@@ -334,7 +489,7 @@ $(document).on("click", ".delete-lesson", function () {
       type: "DELETE",
       success: function () {
         alert("Lesson deleted successfully!");
-        window.location.reload(); // Reload the page or dynamically remove the lesson from UI
+        window.location.reload();
       },
       error: function (xhr) {
         alert("Failed to delete the lesson.");
