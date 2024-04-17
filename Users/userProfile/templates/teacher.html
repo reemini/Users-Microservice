@@ -105,8 +105,18 @@
       <div class="sections">
         <div id="MyPublishedCourses" class="section">
           <div class="course-section">
-              <div class="course-info" onclick="window.location.href='edit-profile.html'">
+              <div class="course-info">
                   <!-- Course content -->
+                  <div class="hamburger-menu">
+                    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+                    <div class="menu-content" id="menu-content">
+                      <ul>
+                        <li onclick="viewCourse()">View Course</li>
+                        <li onclick="editCourse()">Edit Course</li>
+                        <li onclick="showConfirmPopup()">Delete Course</li>
+                      </ul>
+                    </div>
+                  </div>
                   <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
                   <div class="course-title">ALRHAZ</div>
                   <div class="course-details">
@@ -121,7 +131,7 @@
                   </div>
               </div>
 
-              <div class="course-info" onclick="window.location.href='edit-profile.html'">
+              <div class="course-info">
                 <!-- Course content -->
                 <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
                 <div class="course-title">ALRHAZ</div>
@@ -160,16 +170,6 @@
 
 
 
-            <div class="hamburger-menu">
-              <div class="menu-icon" onclick="toggleMenu()">☰</div>
-              <div class="menu-content" id="menu-content">
-                <ul>
-                  <li onclick="viewCourse()">View Course</li>
-                  <li onclick="editCourse()">Edit Course</li>
-                  <li onclick="showConfirmPopup()">Delete Course</li>
-                </ul>
-              </div>
-            </div>
 
             <!-- Confirmation Popup -->
             <div id="confirm-popup" class="popup">
