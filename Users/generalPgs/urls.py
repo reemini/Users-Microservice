@@ -19,6 +19,11 @@ urlpatterns = [
     path('deleteSection/api/<int:section_id>/', DeleteSectionView.as_view(), name='delete_section'),
     path('deleteLesson/api/<int:lesson_id>/', DeleteLessonView.as_view(), name='delete_lesson'),
 
+    path('editLesson/api/<int:lesson_id>/', UpdateLessonProxyView.as_view(), name='proxy-update-lesson'),
+    path('editSection/api/<int:pk>/', SectionUpdateProxyView.as_view(), name='proxy-update-section'),
+    path('editContent/api/', ContentProxyView.as_view(), name='proxy-content-create'),
+    path('editContent/api/<int:id>/', ContentProxyView.as_view(), name='proxy-content-update'),
+
     path('editQuiz',editQuiz, name = 'editQuiz'),
     path('viewQuiz',viewQuiz, name = 'viewQuiz'),
 

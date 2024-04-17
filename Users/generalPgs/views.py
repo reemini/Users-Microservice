@@ -136,13 +136,59 @@ class DeleteLessonView(APIView):
         # Construct the URL to the Courses service
         courses_service_url = settings.COURSES_SERVICE_URL
         url = f"{courses_service_url}/courses/deleteLessons/{lesson_id}/"
-
         # Forward the DELETE request to the Courses microservice
         response = requests.delete(url)
-
         # Return the same response status and data
         return Response(status=response.status_code, data=response.json() if response.content else None)
     
+
+class UpdateLessonProxyView(APIView):
+    def post(self, request, lesson_id):
+        # Construct the URL to the Courses service
+        courses_service_url = settings.COURSES_SERVICE_URL
+        url = f"{courses_service_url}/courses/updateLesson/api/{lesson_id}/"
+
+        # Forward the POST request to the Courses microservice
+        response = requests.post(url, json=request.data, headers={'Content-Type': 'application/json'})
+
+        # Check for success status in the response
+        if response.status_code == 200:
+            return Response(response.json(), status=response.status_code)
+        else:
+            # Handle any errors that occur during the request
+            return Response({"error": "Failed to update the lesson"}, status=response.status_code)
+
+class SectionUpdateProxyView(APIView):
+    def post(self, request, pk):
+        courses_service_url = settings.COURSES_SERVICE_URL
+        url = f"{courses_service_url}/courses/updateSection/api/{pk}/"  # Make sure URL is correct
+        # Forward the PATCH request to the Courses microservice without the token
+        response = requests.patch(url, json=request.data, headers={'Content-Type': 'application/json'})
+
+        # Check for success status in the response
+        if response.status_code == 200:
+            return Response(response.json(), status=response.status_code)
+        else:
+            # Handle any errors that occur during the request
+            return Response({"error": "Failed to update the section"}, status=response.status_code)
+
+class ContentProxyView(APIView):
+    def post(self, request):
+        # Forwarding creation requests to the Course Microservice
+        courses_service_url = settings.COURSES_SERVICE_URL
+        url = f"{courses_service_url}/courses/content/"  # Assuming the endpoint URL is like this
+        response = requests.post(url, json=request.data, headers={'Content-Type': 'application/json'})
+        return Response(response.json(), status=response.status_code)
+
+    def put(self, request, id=None):
+        # Forwarding update requests to the Course Microservice
+        if id is None:
+            return Response({"error": "No content ID provided for update"}, status=400)
+
+        courses_service_url = settings.COURSES_SERVICE_URL
+        url = f"{courses_service_url}/courses/content/{id}/"  # Endpoint with content ID
+        response = requests.put(url, json=request.data, headers={'Content-Type': 'application/json'})
+        return Response(response.json(), status=response.status_code)
 
 def editQuiz(request):
     return render(request,'editQuiz.html')

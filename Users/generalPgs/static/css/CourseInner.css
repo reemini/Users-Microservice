@@ -122,7 +122,7 @@ body {
   /* Center the image horizontally */
 }
 
-.btn-theme {
+.btn-theme{
   color: white;
   padding: 5px 5px;
   text-transform: capitalize;
@@ -431,7 +431,7 @@ textarea {
 }
 
 /* Styling the button */
-.btn-theme-inner {
+.btn-theme-inner{
   background-color: #513886;
   padding: 8px 65px;
   border: none;
@@ -597,15 +597,11 @@ body {
 }
 
 
-.edit-section,
-.edit-lesson {
-  color: rgb(111, 188, 255);
-  /* Blue color for the edit icon */
-  cursor: pointer;
-  /* Ensures the cursor becomes a pointer when hovering over the icon */
-  margin-right: 10px;
-  /* Adds space between the delete icon and the title */
-
+.edit-section, .edit-lesson {
+  color: rgb(111, 188, 255); /* Blue color for the edit icon */
+  cursor: pointer; /* Ensures the cursor becomes a pointer when hovering over the icon */
+  margin-right: 10px; /* Adds space between the delete icon and the title */
+  z-index: 2;
 }
 
 .delete-section,
@@ -649,3 +645,13 @@ body {
   background-color: #ab90e487;
 }
 
+<<<<<<< HEAD
+=======
+.section-container {
+  display: flex;
+  align-items: center;
+}
+.section-container .edit-section, .section-container .delete-section {
+  margin-left: 5px; /* Adjust spacing as needed */
+}
+>>>>>>> b2908847075a20885a8ba81a8becabf17d7712cc
