@@ -122,7 +122,7 @@ body {
   /* Center the image horizontally */
 }
 
-.btn-theme {
+.btn-theme{
   color: white;
   padding: 5px 5px;
   text-transform: capitalize;
@@ -431,7 +431,7 @@ textarea {
 }
 
 /* Styling the button */
-.btn-theme-inner {
+.btn-theme-inner{
   background-color: #513886;
   padding: 8px 65px;
   border: none;
