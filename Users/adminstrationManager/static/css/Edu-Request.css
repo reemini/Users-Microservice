@@ -139,7 +139,7 @@ tr:hover {
     margin-top: 8px;
 }
 
-/* Media Query for responsiveness */
+/* ------------------------------ responsiveness ------------------------------*/
 @media (max-width: 600px) {
     th, td {
         padding: 10px; /* Adjusted padding for smaller screens */

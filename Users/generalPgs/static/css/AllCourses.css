@@ -1,9 +1,9 @@
-/*   course section start */
+/* Course section start */
 .course {
   text-align: center;
   padding-top: 0;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .name-of-all-courses {
@@ -20,10 +20,9 @@
 }
 
 .course .courses .details {
-  padding: 0 15px 0 15px;
+  padding: 0 15px;
   text-align: center;
   font-weight: 600;
-
 }
 
 .course .courses .more-details h6 {
@@ -39,7 +38,6 @@
   font-weight: 350;
   text-transform: capitalize;
   text-align: center;
-
 }
 
 .course h2 span {
@@ -47,7 +45,6 @@
   text-decoration: underline;
   font-size: 3.2rem;
   line-height: 6.5rem;
-
 }
 
 .course-section {
@@ -83,16 +80,6 @@
   text-align: center;
 }
 
-/* .category-type {
-  font-size: 20px;
-  font-weight: 400;
-  padding-bottom: 5px;
-  background-image: url(https://odoocdn.com/openerp_website/static/src/img/highlights/yellow_highlight_bold_05.svg);
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position: 80px;
-} */
-
 .category-type {
   font-size: 15px;
   font-weight: 400;
@@ -123,13 +110,9 @@
   height: 200px;
   /* Set uniform height for all images */
   object-fit: cover;
-  /* Adjust image to fill the container while preserving aspect ratio */
-  /
 }
 
-/* /*   course section end */
-
-/* -------------here style for the category + Search-------------- */
+/* Category and search section start */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -141,7 +124,6 @@
   border: 0.1px solid rgb(216, 216, 216);
   color: rgba(84, 55, 134, 1);
   padding: 10px;
-  margin-right: 994px;
   font-size: 17px;
   cursor: pointer;
 }
@@ -149,7 +131,6 @@
 .dropbtn:hover {
   background-color: rgb(241, 239, 245);
   color: rgba(84, 55, 134, 1);
-  /* Change background color on hover */
 }
 
 .dropdown-content {
@@ -159,7 +140,6 @@
   width: 280px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  margin-right: 994px;
 }
 
 .dropdown-content a {
@@ -177,7 +157,6 @@
   padding: 10px;
   display: flex;
   justify-content: space-between;
-
 }
 
 .search-container input[type=text] {
@@ -204,4 +183,51 @@
 
 .show {
   display: block;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1024px) {
+  /* Adjust margins and paddings for smaller screens */
+  .course {
+      margin: 0 auto;
+      padding: 10px;
+  }
+
+  .course-info {
+      width: calc(50% - 20px);
+  }
+
+  .course h2 {
+      font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack elements for smaller screens */
+  .course-section {
+      flex-direction: column;
+  }
+
+  .course-info {
+      width: 100%;
+  }
+
+  .course h2 {
+      font-size: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Stack elements for smaller screens */
+  .course h2 {
+      font-size: 20px;
+  }
+
+  .course-section {
+      padding: 10px;
+  }
+
+  .course-info {
+      padding: 10px;
+  }
 }

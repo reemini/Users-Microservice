@@ -199,6 +199,49 @@
   <!-- custom js link -->
   <script src="{% static 'js/CourseInner.js' %}"></script>
 
+<<<<<<< HEAD
+    <!------------------ start the sidebar section --------------------------->
+    <nav class="sidebar">
+      <!--name of the sidebar, which is the name of the course  -->
+      <div id="courseTitle" class="text courseTitle"></div>
+      <!-- sections + lessons part -->
+      <button class="btn-theme" id="createSectionBtn">Add New Section</button>
+
+      <ul>
+    
+      </ul>
+    </nav>
+
+    <div class="course-content" style="display: none;">
+      <img
+        class="coures-inner-img"
+        src=""
+        alt=""
+      />
+      <div class="header">
+        <h1 class="Course-Title"></h1>
+        <div class="courese-info">
+          <h3 class="Course-topic"></h3>
+          <h3 class="Course-deficality"></h3>
+        </div>
+        <p class="Course-description">
+        </p>
+      </div>
+    </div>
+
+    <!------------------------------ for add section ------------------------------ -->
+    <div class="modal" id="createSectionModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="title-create-Section">
+          Add New Section<i
+            class="fa-solid fa-microphone-lines"
+            style="color: #513886"
+          ></i>
+        </h2>
+        <form id="sectionForm">
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+=======
   <!-- Quill.js library -->
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
@@ -221,6 +264,7 @@
         // Insert the transcript text into Quill editor
         quill.insertText(quill.getLength(), transcript);
       };
+>>>>>>> b2908847075a20885a8ba81a8becabf17d7712cc
 
       // Start speech recognition when the button is clicked
       recognition.start();
@@ -230,6 +274,70 @@
     const voiceInputBtn = document.querySelector('#voiceInputBtn');
     voiceInputBtn.addEventListener('click', handleVoiceInput);
 
+<<<<<<< HEAD
+    <!----------------------------- for add lesson  --------------------->
+    <div class="modal" id="createLessonModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="title-create-Lesson">
+          Add New Lesson<i
+            class="fa-solid fa-microphone-lines"
+            style="color: #513886"
+          ></i>
+        </h2>
+        <form id="lessonForm">
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+          <label class="label-Course" for="lessonTitle">Lesson Title:</label>
+          <input
+            class="Ctext"
+            type="text"
+            id="lessonTitle"
+            name="lessonTitle"
+            placeholder="Enter lesson title.."
+          />
+          <button type="submit" class="createLessonBtn">Create</button>
+        </form>
+      </div>
+    </div>
+    <br>
+
+    <!-- ----------------------for creat quiz ----------------------------- -->
+    <div id="createQuizModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Create a Quiz</h2>
+          <form id="quizForm">
+              <div class="form-group">
+                  <label for="quizTitle">Quiz Title:</label>
+                  <input type="text" id="quizTitle" name="quizTitle" required />
+              </div>
+              <div class="form-group">
+                  <label for="quizDescription">Quiz Description:</label>
+                  <textarea id="quizDescription" name="quizDescription" required></textarea>
+              </div>
+              <!-- Add more form fields for questions and answers -->
+              <button type="submit">Create Quiz</button>
+          </form>
+      </div>
+  </div>
+  
+    <!-- ------------------------for the editor ------------------------------>
+    <div action="" class="form1" style="display: none;">
+      <!-- Replace the input field with textarea -->
+      <textarea id="description" name="description" style="display: none;"></textarea>
+      <!-- Add a div to hold the Quill editor -->
+      <div id="editor-container"></div>
+      <button class="btn-theme-inner">Edit</button>
+    </div>
+
+    <script></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- custom js link -->
+    <script src="{% static 'js/CourseInner.js' %}"></script>
+  </body>
+=======
     // Function to toggle editor visibility
     function toggleEditorVisibility() {
       const editorDiv = document.querySelector('.form1');
@@ -241,5 +349,6 @@
     editBtn.addEventListener('click', toggleEditorVisibility);
   </script>
 </body>
+>>>>>>> b2908847075a20885a8ba81a8becabf17d7712cc
 </html>
 {% endblock %}
