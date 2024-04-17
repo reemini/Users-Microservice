@@ -214,6 +214,39 @@
     document.getElementById("ok-button").addEventListener("click", function () {
     window.location.href = '{% url "login_page" %}';
   });
+
+//new script tts
+  document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Assuming form validation and submission are successful
+    const message = `THANK YOU. We are happy for having you here. We will review your account information and process your request to assign you for your role. We will notify you soon via email. Stay Tuned.`;
+
+    // Text-to-Speech function
+    const speakText = (text) => {
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = text;
+      speech.volume = 1;
+      speech.rate = 1;
+      speech.pitch = 1;
+      speech.lang = 'en-US'; // Set the language as needed
+
+      speechSynthesis.speak(speech);
+    };
+
+    speakText(message); // Call the TTS function with the message
+
+    // Display the pop-up or redirect as needed
+    document.getElementById('popup').style.display = 'block';
+  });
+
+  document.getElementById('ok-button').addEventListener('click', function() {
+    window.location.href = '{% url "login_page" %}';
+  });
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
 </script>
 
 {% endblock %}
