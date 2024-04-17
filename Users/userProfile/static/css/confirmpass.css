@@ -1,11 +1,13 @@
 /* confirmpass.css */
 
+/* Root variables */
 :root {
     --primary-color: #543786;
     --secondary-color: #FEB737;
     --text-dark: #333333;
 }
 
+/* Body styles */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgba(84, 55, 134, 1);
@@ -13,6 +15,7 @@ body {
     padding: 0;
 }
 
+/* Container styles */
 .Bigcontainer {
     display: flex;
     justify-content: center;
@@ -20,10 +23,10 @@ body {
     height: 100vh;
 }
 
+/* Left container styles */
 .Setpasswordleft-container {
     flex: 1;
     padding: 20px;
-
 }
 
 .Setpasswordleft-container img {
@@ -33,6 +36,7 @@ body {
     margin-left: 25%;
 }
 
+/* Right container styles */
 .Setpasswordright-container {
     flex: 1;
     display: flex;
@@ -42,10 +46,10 @@ body {
     border-radius: 5px;
 }
 
+/* Content styles */
 .contentNewpassword {
     background-color: rgba(255, 255, 255, 0.329);
     padding: 80px;
-    /* Adjusted padding to make the form larger */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -54,22 +58,18 @@ body {
 h1 {
     color: var(--primary-color);
     font-size: 2rem;
-    /* Adjusted font size for the title */
     margin-bottom: 20px;
-    /* Added margin for spacing */
 }
 
 .Newpassinput {
     position: relative;
     margin-bottom: 30px;
-    /* Increased margin for spacing */
 }
 
 .toggle-password {
     position: absolute;
     top: 50%;
     right: 10px;
-    /* Adjust the right distance according to your preference */
     transform: translateY(-50%);
     cursor: pointer;
     color: #543786;
@@ -78,14 +78,12 @@ h1 {
 .setpass,
 .resetpass {
     padding: 15px 20px;
-    /* Adjusted padding for input fields */
     width: 100%;
     outline: none;
     border: none;
     border-bottom: 1px solid #717775;
     height: 2.5rem;
     font-size: 1rem;
-    /* Adjusted font size for input fields */
 }
 
 .setpass:focus,
@@ -118,20 +116,32 @@ button {
     color: #fff;
     border: none;
     padding: 15px 30px;
-    /* Adjusted padding for button */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 1rem;
-    /* Adjusted font size for button */
 }
 
 button#setNewPassButton {
     background-color: #543786;
-    /* Updated color */
 }
 
 .back-to-login {
     display: none;
-    /* Remove the 'Return to Login' button */
+}
+
+/* Media queries for responsiveness */
+
+/* For screens smaller than 768px (tablets) */
+@media (max-width: 768px) {
+    .Setpasswordleft-container img {
+        margin-left: 0;
+    }
+}
+
+/* For screens smaller than 576px (mobile devices) */
+@media (max-width: 576px) {
+    .Setpasswordright-container {
+        margin-right: 0;
+    }
 }

@@ -9,7 +9,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgba(84, 55, 134, 1);
-    ;
     margin: 0;
     padding: 0;
 }
@@ -24,13 +23,14 @@ body {
 .left-container2 {
     flex: 1;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .left-container2 img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
-    max-width: 700px;
-    margin-left: 25%;
 }
 
 .right-container2 {
@@ -38,12 +38,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .contentv {
     background-color: rgb(231, 219, 253);
     padding: 40px;
-    margin-right: 25%;
+    max-width: 500px;
+    width: 100%;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -56,7 +58,6 @@ h1 {
 .input__group2 {
     position: relative;
 }
-
 
 .resetEm {
     padding: 0.75rem 0;
@@ -107,7 +108,6 @@ button {
 
 button#okButton {
     background-color: #543786;
-    /* Updated color */
 }
 
 .back-to-login {
@@ -157,19 +157,18 @@ button#okButton {
     right: 12px;
     font-size: 28px;
     color: #FEB737;
-    /* Updated color */
     cursor: pointer;
 }
 
 .close-icon:hover {
     color: #8a5c07;
-    /* Updated color */
 }
 
 /* Media Queries for Responsiveness */
 @media only screen and (max-width: 768px) {
     .container1 {
         flex-direction: column;
+        height: auto;
     }
 
     .left-container2,
@@ -178,7 +177,7 @@ button#okButton {
         width: 100%;
     }
 
-    .left-container2 {
-        padding: 20px 0;
+    .contentv {
+        margin: 20px;
     }
 }
