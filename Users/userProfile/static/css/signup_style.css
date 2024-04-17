@@ -117,7 +117,7 @@ form input:focus~label {
 
 form p {
     margin-bottom: 1.5rem;
-}
+} 
 
 form p a {
     font-size: 1rem;
@@ -231,6 +231,7 @@ form button:hover {
 
 .popup p {
     padding-top: 16px;
+    padding-bottom: 20px;
     color: var(--text-dark);
 }
 
