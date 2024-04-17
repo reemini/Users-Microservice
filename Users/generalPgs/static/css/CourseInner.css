@@ -547,7 +547,7 @@ body {
   display: block;
 }
 
-/*--------------------------- Media query for responsiveness ----------------------------*/
+/*--------------------------- responsiveness ----------------------------*/
 @media (max-width: 800px) {
   body {
     flex-direction: column;
@@ -648,3 +648,4 @@ body {
 .addLessonBtn {
   background-color: #ab90e487;
 }
+

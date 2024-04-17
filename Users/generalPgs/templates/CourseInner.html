@@ -34,7 +34,7 @@
       <span class="fas fa-bars"></span>
     </div>
 
-    <!-- start the sidebar section -->
+    <!------------------ start the sidebar section --------------------------->
     <nav class="sidebar">
       <!--name of the sidebar, which is the name of the course  -->
       <div id="courseTitle" class="text courseTitle"></div>
@@ -42,11 +42,11 @@
       <button class="btn-theme" id="createSectionBtn">Add New Section</button>
 
       <ul>
-
+    
       </ul>
     </nav>
 
-    <div  class="course-content" style="display: none;">
+    <div class="course-content" style="display: none;">
       <img
         class="coures-inner-img"
         src=""
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <!-- for add section  -->
+    <!------------------------------ for add section ------------------------------ -->
     <div class="modal" id="createSectionModal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <!-- for add lesson  -->
+    <!----------------------------- for add lesson  --------------------->
     <div class="modal" id="createLessonModal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -124,7 +124,28 @@
       </div>
     </div>
     <br>
-    <!-- for the editor -->
+
+    <!-- ----------------------for creat quiz ----------------------------- -->
+    <div id="createQuizModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Create a Quiz</h2>
+          <form id="quizForm">
+              <div class="form-group">
+                  <label for="quizTitle">Quiz Title:</label>
+                  <input type="text" id="quizTitle" name="quizTitle" required />
+              </div>
+              <div class="form-group">
+                  <label for="quizDescription">Quiz Description:</label>
+                  <textarea id="quizDescription" name="quizDescription" required></textarea>
+              </div>
+              <!-- Add more form fields for questions and answers -->
+              <button type="submit">Create Quiz</button>
+          </form>
+      </div>
+  </div>
+  
+    <!-- ------------------------for the editor ------------------------------>
     <div action="" class="form1" style="display: none;">
       <!-- Replace the input field with textarea -->
       <textarea id="description" name="description" style="display: none;"></textarea>

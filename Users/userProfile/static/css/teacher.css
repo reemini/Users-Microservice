@@ -271,12 +271,8 @@
     border-radius: 8px;
     margin-bottom: 10px;
     width: 100%;
-    /* Set uniform width for all images */
     height: 200px;
-    /* Set uniform height for all images */
     object-fit: cover;
-    /* Adjust image to fill the container while preserving aspect ratio */
-    /
 }
 
 /* /*   course section end */
@@ -516,7 +512,7 @@ select {
     -webkit-appearance: none;
 }
 
-.title-create-coures {
+.title-create-coures { 
     color: #513886;
     /* Apply the specified color to h2 */
     font-size: 48px;

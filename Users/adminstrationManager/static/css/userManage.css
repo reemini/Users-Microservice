@@ -1,0 +1,337 @@
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Container styles */
+.container {
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styles */
+.title {
+    font-size: 32px;
+    color: #444;
+    text-align: center;
+    margin-bottom: 32px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: border-color 0.2s ease;
+    margin-right: 8px; /* Add some spacing between input and buttons */
+}
+
+.search-bar input::placeholder {
+    color: #888;
+}
+
+.search-bar button {
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: #5a67d8;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-left: 16px; /* Default margin-left for desktop */
+}
+
+.search-bar button:hover {
+    background-color: #4c51bf;
+}
+
+/* Popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.popup-title {
+    font-weight: bold;
+    color: #DC2626;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.popup-message {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.popup-delete-button {
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    /* For tablets and smaller screens */
+    .search-bar button {
+        margin-left: 8px; /* Less margin on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    /* For mobile screens */
+    .search-bar button {
+        margin-left: 4px; /* Even less margin on mobile screens */
+    }
+}
+
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+}
+
+table th, table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+table th {
+    background-color: #f0f2f7;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f9fc;
+}
+
+table tr:hover {
+    background-color: #edf2f7;
+}
+
+ /* Style the modal - hidden by default */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    padding: auto;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4)/* Enable opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+    margin: 15% auto; /* 15% from the top and centered */
+    width: 40%; /* Could be wider or narrower */
+    padding: 40px 50px 50px 50px;
+    border: 3px solid #96b6ee;
+    border-radius: 30px;
+    background-color: #fff; /* White */
+    position: relative; /* To position the close button */
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    }
+    
+    /* Add a zoom animation */
+    @keyframes zoom {
+    from {transform: scale(0, 0);} /* Start from 0 scale */
+    to {transform: scale(1, 1);} /* Scale to 100% */
+    }
+    
+    /* Style the close button */
+    .close {
+    color: black;
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 36px;
+    font-weight: bold;
+    }
+    
+    /* Style the create course button */
+    .createUserBtn {
+    background-color: #D6DFEF; /* Apply the specified color */
+    color: black;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Make it the same width as inputs */
+    margin-top: 10px;/* Add space after form */
+    }
+    
+    /* Style form elements */
+    
+    .label-userMang{
+    color:#000000; /* Apply the specified color to labels */
+    font-weight: 100;
+    z-index: 100;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    left: 15px;
+    top: 9px;
+    background-color: #ffffff;
+    font-size: 18px;
+    }
+    .fname, .Lname, .email, .number, .file, .date{
+    width: 100%;
+    padding: 10px;
+    border: 1.9px solid #D6DFEF;
+    border-radius: 7px;
+    box-sizing: border-box; 
+    margin-bottom: 10px;
+    line-height: 3ex;
+    position: relative;
+    }
+    
+    
+    select {
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    border: 2px solid #D6DFEF;
+    border-radius: 7px;
+    box-sizing: border-box; /* Include padding in width */
+    margin-bottom: 10px;
+    line-height: 5ex;
+    -webkit-appearance: none;
+    }
+    
+    select.minimal {
+    background-image:
+    linear-gradient(45deg, transparent 50%, #D6DFEF 50%),
+    linear-gradient(135deg, #D6DFEF 50%, transparent 50%);
+    background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+    background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+    background-repeat: no-repeat;
+    }
+    
+    select.minimal:focus {
+    background-image:
+    linear-gradient(45deg, #D6DFEF 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, #D6DFEF 50%),
+    linear-gradient(to right, #ccc, #ccc);
+    background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+    background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: 513886;
+    outline: 0;
+    }
+    
+    .title-create-account{
+    color: #000000; /* Apply the specified color to h2 */
+    font-size: 30px; /* Adjust font size */
+    }
+    ::file-selector-button {
+    display: none;
+    }
+    
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 16px;
+        margin: 20px auto;
+    }
+
+    .search-bar {
+        flex-direction: column; /* Stack search bar elements vertically */
+        align-items: stretch;
+    }
+
+    .search-bar input,
+    .search-bar button {
+        width: 100%; /* Make inputs and buttons full width on small screens */
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    .modal-content form {
+        flex-direction: column;
+    }
+
+    .modal-content label {
+        width: 100%; /* Make labels full width */
+    }
+
+    .modal-content input,
+    .modal-content select {
+        width: 100%; /* Make inputs and selects full width */
+    }
+
+    .modal-content button[type="submit"] {
+        width: 100%; /* Make submit button full width */
+        align-self: stretch;
+    }
+}
