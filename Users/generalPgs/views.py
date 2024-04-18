@@ -5,9 +5,11 @@ from django.http import Http404
 import requests
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import generics, permissions, status
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
+from userProfile.models import Educator
 
 
 
@@ -189,6 +191,38 @@ class ContentProxyView(APIView):
         url = f"{courses_service_url}/courses/content/{id}/"  # Endpoint with content ID
         response = requests.put(url, json=request.data, headers={'Content-Type': 'application/json'})
         return Response(response.json(), status=response.status_code)
+
+
+
+class CreateCourseProxyView(APIView):
+    def post(self, request):
+        try:
+            educator = Educator.objects.get(user=request.user)
+        except Educator.DoesNotExist:
+            return Response({"error": "Educator profile not found for current user."}, status=status.HTTP_404_NOT_FOUND)
+
+        url = settings.COURSES_SERVICE_URL
+        courses_service_url = f"{url}/courses/createCourse/api/"
+        
+        data = request.data.copy()
+        data['instructor'] = educator.id  # Ensure educator ID is correctly retrieved
+
+        try:
+            response = requests.post(courses_service_url, data=data, files=request.FILES)
+            response.raise_for_status()  # Raises for non-2xx responses
+            return Response(response.json(), status=response.status_code)
+        except requests.exceptions.RequestException as e:
+            return Response({"error": "Failed to communicate with Course service", "details": str(e)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+class CourseDeleteProxyView(APIView):
+    def delete(self, request, pk, format=None):
+        courses_service_url = f"{settings.COURSES_SERVICE_URL}/courses/delete/{pk}/"
+        response = requests.delete(courses_service_url)
+
+        # Forward the exact response from the Course Microservice
+        return Response(status=response.status_code)
+
+
 
 def editQuiz(request):
     return render(request,'editQuiz.html')

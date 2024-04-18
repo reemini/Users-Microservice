@@ -8,7 +8,10 @@
   <!-- custom css -->
   <link rel="stylesheet" href="{% static 'css/teacher.css' %}" />
   <!-- font-awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
 </head>
 
 <body>
@@ -16,7 +19,11 @@
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
-          <img id="user-profile-picture" src="{% static 'images/profile-img.png' %}" alt="" />
+          <img
+            id="user-profile-picture"
+            src="{% static 'images/profile-img.png' %}"
+            alt=""
+          />
           <h2 class="name-profile">Eyad Salem</h2>
           <p class="ID-profile">4010365</p>
           <p class="ProfeTitle-profile">Software Engineer</p>
@@ -29,11 +36,14 @@
               complex problems.
             </p>
             <div class="pro-links">
-              <a href="#"><i class="fa-brands fa-linkedin" style="color: #543786"></i></a>
+              <a href="#"
+                ><i class="fa-brands fa-linkedin" style="color: #543786"></i
+              ></a>
             </div>
           </div>
           <a href="{% url 'editTchProfile' %}">
-            <button class="btn-theme">Edit Profile</button></a>
+            <button class="btn-theme">Edit Profile</button></a
+          >
         </div>
       </div>
     </div>
@@ -55,302 +65,115 @@
         </div>
       </div>
       <!------------- add new course------------------- -->
-      <button class="btn-theme-createcourse" id="createCourseBtn">Create New Course</button>
+      <button class="btn-theme-createcourse" id="createCourseBtn">
+        Create New Course
+      </button>
 
       <!-- -------------------------------pop-up create course---------------------------- -->
       <div id="createCourseModal" class="modal">
-
         <div class="modal-content">
           <span class="close">&times;</span>
-          <h2 class="title-create-coures">Create Course <i class="fa-solid fa-microphone-lines"
-              style="color: #513886;"></i></h2>
+          <h2 class="title-create-coures">
+            Create Course
+            <i class="fa-solid fa-microphone-lines" style="color: #513886"></i>
+          </h2>
           <!-- <form action="/action_page.php"> -->
-          <form id="createCourseForm">
+          <form id="createCourseForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <label class="label-Course" for="courseTitle">Course Title:</label>
-            <input class="Ctext" type="text" id="courseTitle" name="courseTitle" placeholder="Enter course title..">
+            <input
+              class="Ctext"
+              type="text"
+              id="courseTitle"
+              name="courseTitle"
+              placeholder="Enter course title.."
+            />
 
-            <label class="label-Course" for="courseCategory">Course Category:</label>
-            <input class="Ctext" type="text" id="courseCategory" name="courseCategory"
-              placeholder="Enter course category..">
+            <label class="label-Course" for="courseCategory"
+              >Course Category:</label
+            >
+            <input
+              class="Ctext"
+              type="text"
+              id="courseCategory"
+              name="courseCategory"
+              placeholder="Enter course category.."
+            />
 
-            <label class="label-Course" for="CourseInstructor">Course Instructor ID:</label>
-            <input class="Ctext" type="text" id="CourseInstructor" name="CourseInstructor"
-              placeholder="Enter your ID..">
+            <label class="label-Course" for="courseDescription"
+              >Course Description:</label
+            >
+            <textarea
+              id="courseDescription"
+              name="courseDescription"
+              placeholder="Write a course description.."
+            ></textarea>
 
-            <label class="label-Course" for="courseDescription">Course Description:</label>
-            <textarea id="courseDescription" name="courseDescription"
-              placeholder="Write a course description.."></textarea>
-
-            <label class="label-Course" for="difficultyLevel">Difficulty Level:</label>
-            <input class="Ctext" type="text" id="difficultyLevel" name="difficultyLevel"
-              placeholder="Enter course difficulty Level..">
-
+            <label class="label-Course" for="difficultyLevel"
+              >Difficulty Level:</label
+            >
+            <input
+              class="Ctext"
+              type="text"
+              id="difficultyLevel"
+              name="difficultyLevel"
+              placeholder="Enter course difficulty Level.."
+            />
 
             <label class="label-Course" for="duration">Duration:</label>
-            <input class="Ctext" type="text" id="duration" name="duration" placeholder="Enter course duration..">
+            <input
+              class="Ctext"
+              type="text"
+              id="duration"
+              name="duration"
+              placeholder="Enter course duration.."
+            />
 
-            <br>
+            <br />
             <label class="label-Course" for="courseImage">Picture:</label>
-            <input class="Ctext" type="file" id="courseImage" name="coursePic" accept="image/*">
-            <br>
+            <input
+              class="Ctext"
+              type="file"
+              id="courseImage"
+              name="coursePic"
+              accept="image/*"
+            />
+            <br />
             <button type="submit" class="createCourseBtn">Create</button>
           </form>
         </div>
-
       </div>
 
       <!-- ---------section start here------------------- -->
       <div class="sections">
         <div id="MyPublishedCourses" class="section">
-          <div class="course-section">
-              <div class="course-info">
-                  <!-- Course content -->
-                  <div class="hamburger-menu">
-                    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-                    <div class="menu-content" id="menu-content">
-                      <ul>
-                        <li onclick="viewCourse()">View Course</li>
-                        <li onclick="editCourse()">Edit Course</li>
-                        <li onclick="showConfirmPopup()">Delete Course</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
-                  <div class="course-title">ALRHAZ</div>
-                  <div class="course-details">
-                      <div class="category-type">science</div>
-                      <div class="hours"><span class="emoji">&#9200;</span> 20 hours</div>
-                      <div class="students"><span class="emoji">&#128100;</span> 500</div>
-                      <div class="instructor"><span class="emoji">&#128188;</span> John Doe</div>
-                      <div class="reviews">
-                          ⭐⭐⭐⭐⭐ <!-- Unicode stars for ratings -->
-                          <p>1K</p> <!-- Number of reviews -->
-                      </div>
-                  </div>
-              </div>
-
-              <div class="course-info">
-                <!-- Course content -->
-                <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
-                <div class="course-title">ALRHAZ</div>
-                <div class="course-details">
-                    <div class="category-type">science</div>
-                    <div class="hours"><span class="emoji">&#9200;</span> 20 hours</div>
-                    <div class="students"><span class="emoji">&#128100;</span> 500</div>
-                    <div class="completion">80%</div> <!-- Percentage of completion -->
-                    <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
-                    <div class="instructor"><span class="emoji">&#128188;</span> John Doe</div>
-                    <div class="reviews">
-                        ⭐⭐⭐⭐⭐ <!-- Unicode stars for ratings -->
-                        <p>1K</p> <!-- Number of reviews -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-info" onclick="window.location.href='edit-profile.html'">
-              <!-- Course content -->
-              <img class="course-image" src="{% static 'images/img1.jpeg' %}" alt="Course 1" />
-              <div class="course-title">ALRHAZ</div>
-              <div class="course-details">
-                  <div class="category-type">science</div>
-                  <div class="hours"><span class="emoji">&#9200;</span> 20 hours</div>
-                  <div class="students"><span class="emoji">&#128100;</span> 500</div>
-                  <div class="completion">80%</div> <!-- Percentage of completion -->
-                  <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
-                  <div class="instructor"><span class="emoji">&#128188;</span> John Doe</div>
-                  <div class="reviews">
-                      ⭐⭐⭐⭐⭐ <!-- Unicode stars for ratings -->
-                      <p>1K</p> <!-- Number of reviews -->
-                  </div>
-              </div>
-          </div>
-
-
-
-
-
-            <!-- Confirmation Popup -->
-            <div id="confirm-popup" class="popup">
-              <div class="popup-content">
-                <p>Are you sure you want to delete the course?</p>
-                <div class="button-group">
-                  <button onclick="deleteCourse()">Yes</button>
-                  <button onclick="closePopup()">No</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="course-section"></div>
         </div>
 
         <div id="MyArchive" class="section">
           <div class="course-section"></div>
         </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Confirmation Popup -->
+  <div id="confirm-popup" class="popup">
+    <div class="popup-content">
+      <p>Are you sure you want to delete the course?</p>
+      <div class="button-group">
+        <button onclick="deleteCourse()">Yes</button>
+        <button onclick="closePopup()">No</button>
       </div>
     </div>
   </div>
 
   <script>
-    // script for moving through the sections on the same page---------------------
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuLinks = document.querySelectorAll(".menu a");
-
-      menuLinks.forEach(function (menuLink) {
-        menuLink.addEventListener("click", function (event) {
-          const targetId = menuLink.getAttribute("href").substring(1); // Remove the leading '#' from the href
-          const targetSection = document.getElementById(targetId);
-
-          // Hide all sections
-          const sections = document.querySelectorAll(".section");
-          sections.forEach(function (section) {
-            section.style.display = "none";
-            section.querySelector(".course-section").style.display = "none"; // Also ensure internal course-sections are hidden
-          });
-
-          // Show only the targeted section and its course-section if applicable
-          targetSection.style.display = "block";
-          const courseSection = targetSection.querySelector(".course-section");
-          if (courseSection) {
-            courseSection.style.display = "flex"; // Show the course-section within the active section
-          }
-
-          // Remove active class from all links and add to the current link
-          menuLinks.forEach(function (link) {
-            link.classList.remove("active");
-          });
-          menuLink.classList.add("active");
-
-          event.preventDefault(); // Prevent the default behavior of the link
-        });
-      });
-    });
-
-    // script for the category---------------------------------------
-    function toggleDropdown() {
-      document.getElementById("categoryDropdown").classList.toggle("show");
-    }
-
-    function searchCategory() {
-      var input, filter, ul, li, a, i;
-      input = document.getElementById("categorySearchInput");
-      filter = input.value.toUpperCase();
-      div = document.getElementById("categoryDropdown");
-      a = div.getElementsByTagName("a");
-      for (i = 0; i < a.length; i++) {
-        txtValue = a[i].textContent || a[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          a[i].style.display = "";
-        } else {
-          a[i].style.display = "none";
-        }
-      }
-    }
-
-    // script for making the numbers of analysis increase----------------------------
-    window.addEventListener("DOMContentLoaded", () => {
-      const totalCoursesSpan = document.getElementById("total-courses");
-
-      const totalCourses = 105; /*  total courses value */
-      const coursesPerMonth = 15; /*  courses per month value */
-      const completedPercentage = 76; /*  completed percentage value */
-
-      animateNumber(totalCoursesSpan, totalCourses);
-    });
-
-    function animateNumber(element, finalValue) {
-      let currentValue = 1;
-      const increment = Math.ceil(finalValue / 100); // Divide final value by 100 for smooth animation
-      const interval = setInterval(() => {
-        currentValue += increment;
-        element.textContent = currentValue;
-        if (currentValue >= finalValue) {
-          clearInterval(interval);
-        }
-      }, 20); // Adjust the interval for desired animation speed
-    }
-
-    function animatePercentage(element, finalValue) {
-      let currentValue = 0;
-      const increment = Math.ceil(finalValue / 100); // Divide final value by 100 for smooth animation
-      const interval = setInterval(() => {
-        currentValue += increment;
-        element.textContent = currentValue + "%";
-        if (currentValue >= finalValue) {
-          clearInterval(interval);
-        }
-      }, 20); // Adjust the interval for desired animation speed
-    }
-
-    // script for pop-up create new course---------------------------------------
-    // Get the button that opens the modal
-    var createCourseBtn = document.getElementById("createCourseBtn");
-
-    // Get the modal element
-    var createCourseModal = document.getElementById("createCourseModal");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    createCourseBtn.onclick = function () {
-      createCourseModal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      createCourseModal.style.display = "none";
-    }
-
-    // When the user clicks outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == createCourseModal) {
-        createCourseModal.style.display = "none";
-      }
-    }
-    // script for menu (view, edit, and delete)---------------------------------------------------------
-    // Toggle menu visibility
-    function toggleMenu() {
-      const menuContent = document.getElementById('menu-content');
-      menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // Handle view course
-    function viewCourse() {
-      alert('View Course selected');
-      toggleMenu(); // Hide the menu
-    }
-
-    // Handle edit course
-    function editCourse() {
-      alert('Edit Course selected');
-      toggleMenu(); // Hide the menu
-    }
-
-    // Display the confirmation popup
-    function showConfirmPopup() {
-      toggleMenu(); // Hide the menu
-      const confirmPopup = document.getElementById('confirm-popup');
-      confirmPopup.style.display = 'flex';
-    }
-
-    // Handle course deletion
-    function deleteCourse() {
-      alert('Course deleted');
-      closePopup();
-    }
-
-    // Close popup
-    function closePopup() {
-      const confirmPopup = document.getElementById('confirm-popup');
-      confirmPopup.style.display = 'none';
-    }
-
 
     const STATIC_URL = "{% static '' %}";
   </script>
 
-  <!-- <script src="{% static 'js/tchProfile.js' %}"></script> -->
+  <script src="{% static 'js/tchProfile.js' %}"></script>
 </body>
 {% endblock %}
