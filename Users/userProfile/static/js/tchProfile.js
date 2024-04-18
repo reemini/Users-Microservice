@@ -71,35 +71,34 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("difficultyLevel").value
     );
     formData.append("duration", document.getElementById("duration").value);
-    const fileInput = document.getElementById('courseImage');
-if (fileInput.files.length > 0) {
-    formData.append('coursePic', fileInput.files[0]);
-} else {
-    console.log('No file selected');
-}
+    const fileInput = document.getElementById("courseImage");
+    if (fileInput.files.length > 0) {
+      formData.append("coursePic", fileInput.files[0]);
+    } else {
+      console.log("No file selected");
+    }
 
-
-fetch('/createCourse/api/', {
-  method: 'POST',
-  body: formData,  // No headers for CSRFToken needed when sending FormData via fetch unless specifically configured to do so
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-  return response.json();
-})
-.then(data => {
-  console.log('Success:', data);
-  alert("Course created successfully!");
-  form.reset();
-  document.getElementById("createCourseModal").style.display = "none";
-})
-.catch(error => {
-  console.error('Error:', error);
-  alert("Error creating course: " + error.message);
-});
-});
+    fetch("/createCourse/api/", {
+      method: "POST",
+      body: formData, // No headers for CSRFToken needed when sending FormData via fetch unless specifically configured to do so
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+        alert("Course created successfully!");
+        form.reset();
+        document.getElementById("createCourseModal").style.display = "none";
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error creating course: " + error.message);
+      });
+  });
 });
 
 function getCookie(name) {
@@ -152,12 +151,13 @@ function renderCourses(courses, sectionId) {
       menuContent.id = `menu-content-${course.id}`; // Unique ID for each course's menu
       menuContent.style.display = "none"; // Initially hidden
       const ul = document.createElement("ul");
-      ["View", "Edit", "Archive", "Delete"].forEach((action) => {
+      ["View", "Edit", "Archive/Publish", "Delete"].forEach((action) => {
         const li = document.createElement("li");
         li.textContent = action;
-        li.onclick = function () {
+        li.onclick = function (event) {
+          event.stopPropagation();  // Stop click from bubbling further to prevent unwanted navigation
           handleCourseAction(action, course.id);
-        }; // handleCourseAction is a function to handle actions
+        };
         ul.appendChild(li);
       });
       menuContent.appendChild(ul);
@@ -235,16 +235,22 @@ function toggleMenu(menuContent) {
 // Example function to handle course actions
 function handleCourseAction(action, courseId) {
   switch (action) {
-    case 'Delete':
-        showConfirmPopup(courseId);
-        break;
+    case "Edit":
+      // Navigate to the inner course page when "Edit" is clicked
+      window.location.href = `/courseInner/${courseId}/`;
+      break;
+    case "Archive/Publish":
+      toggleCoursePublish(courseId);
+      break;
+    case "Delete":
+      showConfirmPopup(courseId);
+      break;
     // Handle other actions like 'View', 'Edit', 'Archive' as needed
     default:
-        console.log('Action not implemented:', action);
-}
+      console.log("Action not implemented:", action);
+  }
 }
 
-///////////////////////////////////////////////////////////////////////
 // script for moving through the sections on the same page---------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuLinks = document.querySelectorAll(".menu a");
@@ -364,49 +370,71 @@ window.onclick = function (event) {
 
 // Display the confirmation popup
 function showConfirmPopup(courseId) {
-  const popup = document.getElementById('confirm-popup');
-  popup.style.display = 'block';
+  const popup = document.getElementById("confirm-popup");
+  popup.style.display = "block";
   // Set a data attribute on the popup with the course ID
-  popup.setAttribute('data-course-id', courseId);
+  popup.setAttribute("data-course-id", courseId);
+}
+
+
+function closePopup() {
+  const popup = document.getElementById("confirm-popup");
+  popup.style.display = "none";
+}
+
+function removeCourseElement(courseId) {
+  const courseElement = document.querySelector(
+    `div[data-course-id='${courseId}']`
+  );
+  if (courseElement) {
+    courseElement.parentNode.removeChild(courseElement);
+  }
+}
+
+function toggleCoursePublish(courseId) {
+  fetch(`/toggleCoursePublish/api/${courseId}/`, {
+    method: "PATCH",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Toggle publish response:", data);
+      alert(`Course is now "${data.isPublished ? "published" : "archived"}".`);
+      window.location.reload(); // Reload to reflect changes
+    })
+    .catch((error) => {
+      console.error("Error toggling publish:", error);
+      alert("Failed to toggle publish status.");
+    });
 }
 
 // Handle course deletion
 function deleteCourse() {
-  const popup = document.getElementById('confirm-popup');
-  const courseId = popup.getAttribute('data-course-id');
+  const popup = document.getElementById("confirm-popup");
+  const courseId = popup.getAttribute("data-course-id");
   if (courseId) {
-      fetch(`/deleteCourse/api/${courseId}/`, {
-          method: 'DELETE',
-          headers: {
-              'X-CSRFToken': getCookie('csrftoken'), // Ensure CSRF token is sent
-          },
+    fetch(`/deleteCourse/api/${courseId}/`, {
+      method: "DELETE",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken"), // Ensure CSRF token is sent
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Course deleted successfully!");
+          // Optionally, remove the course element from the DOM
+          removeCourseElement(courseId);
+          window.location.reload(); //
+        } else {
+          alert("Failed to delete the course.");
+        }
       })
-      .then(response => {
-          if (response.ok) {
-              alert("Course deleted successfully!");
-              // Optionally, remove the course element from the DOM
-              removeCourseElement(courseId);
-              window.location.reload(); //
-          } else {
-              alert("Failed to delete the course.");
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert("An error occurred while deleting the course.");
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while deleting the course.");
       });
   }
   closePopup(); // Close the popup irrespective of the result
-}
-
-function closePopup() {
-  const popup = document.getElementById('confirm-popup');
-  popup.style.display = 'none';
-}
-
-function removeCourseElement(courseId) {
-  const courseElement = document.querySelector(`div[data-course-id='${courseId}']`);
-  if (courseElement) {
-      courseElement.parentNode.removeChild(courseElement);
-  }
 }

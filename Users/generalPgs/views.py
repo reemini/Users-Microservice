@@ -223,6 +223,15 @@ class CourseDeleteProxyView(APIView):
         return Response(status=response.status_code)
 
 
+class TogglePublishCourseProxyView(APIView):
+    def patch(self, request, pk):
+        courses_service_url = f"{settings.COURSES_SERVICE_URL}/courses/togglePublish/{pk}/"
+        response = requests.patch(courses_service_url)
+        if response.status_code == 200:
+            return Response(response.json(), status=response.status_code)
+        else:
+            return Response(response.json(), status=response.status_code)
+
 
 def editQuiz(request):
     return render(request,'editQuiz.html')

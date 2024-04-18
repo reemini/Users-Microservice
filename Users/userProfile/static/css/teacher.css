@@ -563,10 +563,10 @@ select {
     display: none;
     position: absolute;
     top: 24px;
-    left: 0;
+    right: 20px;
     background-color: #f1f1f1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 70px;
+    width: 140px;
     z-index: 1000;  /* Ensure it is above other content */
 
 }
