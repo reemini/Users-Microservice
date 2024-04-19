@@ -507,10 +507,11 @@ select {
     border: 2px solid #513886;
     border-radius: 7px;
     box-sizing: border-box;
-    /* Include padding in width */
     margin-bottom: 10px;
-    line-height: 5ex;
-    -webkit-appearance: none;
+    line-height: normal; /* Reset the line-height */
+    -webkit-appearance: none; /* For WebKit browsers */
+    -moz-appearance: none; /* For Mozilla Firefox */
+    appearance: none; /* For modern browsers */
 }
 
 .title-create-coures { 
