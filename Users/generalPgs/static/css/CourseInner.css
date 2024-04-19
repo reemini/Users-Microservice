@@ -645,8 +645,6 @@ body {
   background-color: #ab90e487;
 }
 
-<<<<<<< HEAD
-=======
 .section-container {
   display: flex;
   align-items: center;
@@ -654,4 +652,4 @@ body {
 .section-container .edit-section, .section-container .delete-section {
   margin-left: 5px; /* Adjust spacing as needed */
 }
->>>>>>> b2908847075a20885a8ba81a8becabf17d7712cc
+/**/

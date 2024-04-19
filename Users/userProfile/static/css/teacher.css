@@ -243,6 +243,7 @@
     cursor: pointer;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.1s ease;
+    position: relative;
 }
 
 .course-info:hover {
@@ -527,22 +528,47 @@ select {
 
 /* Hamburger menu styles */
 .hamburger-menu {
-    position: relative;
+    position: absolute;  /* Changed from relative to absolute */
+    top: 20px;  /* Adjust as needed */
+    right: 20px;  /* Adjust as needed */
 }
 
 .menu-icon {
-    font-size: 24px;
+    font-size: 15px;
     cursor: pointer;
+    z-index: 1000;  /* Ensure it is above other content */
+    padding: 10px;  /* Uniform padding */
+    border-radius: 50%;  /* Rounds the corners to make a circle */
+    display: inline-block;  /* Allows the element to be sized properly */
+    width: 30px;  /* Explicit width */
+    height: 30px;  /* Explicit height */
+    text-align: center;  /* Centers the icon horizontally */
+    line-height: 15px;  /* Adjusted to match the height for vertical centering */
+
+    background-color: #cccccc9a;  /* No background by default */
+    transition: background-color 0.3s;  /* Smooth transition for background color */
+}
+.menu-icon:hover {
+    background-color: #FFEBAE;  /* Light grey background on hover */    
+}
+.menu{
+    margin-bottom: 0;
+    color: white;
+}
+.menu:hover{
+    color: #5c5c5c9a;
 }
 
 .menu-content {
     display: none;
     position: absolute;
     top: 24px;
-    left: 0;
+    right: 20px;
     background-color: #f1f1f1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 150px;
+    width: 140px;
+    z-index: 1000;  /* Ensure it is above other content */
+
 }
 
 .menu-content ul {

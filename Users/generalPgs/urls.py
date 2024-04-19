@@ -24,6 +24,12 @@ urlpatterns = [
     path('editContent/api/', ContentProxyView.as_view(), name='proxy-content-create'),
     path('editContent/api/<int:id>/', ContentProxyView.as_view(), name='proxy-content-update'),
 
+
+    path('createCourse/api/', CreateCourseProxyView.as_view(), name='create-course-proxy'),
+    path('deleteCourse/api/<int:pk>/', CourseDeleteProxyView.as_view(), name='proxy-course-delete'),
+    path('toggleCoursePublish/api/<int:pk>/', TogglePublishCourseProxyView.as_view(), name='toggle-course-publish'),
+
+
     path('editQuiz',editQuiz, name = 'editQuiz'),
     path('viewQuiz',viewQuiz, name = 'viewQuiz'),
 
