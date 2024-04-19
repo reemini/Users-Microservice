@@ -146,3 +146,70 @@ body {
   color: white;
   transform: translateY(-2px);
 }
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Adjusted margin for smaller screens */
+  }
+
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 20px; /* Space between image and form on smaller screens */
+  }
+
+  .edit-icon {
+    left: auto;
+    right: 10px; /* Adjusted position for smaller screens */
+    bottom: auto;
+  }
+
+  .form {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .btn-theme {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 576px) {
+  .container {
+    padding: 0 10px; /* Decrease container padding for smaller screens */
+    margin-top: 100px; /* Adjusted margin for smaller screens */
+  }
+
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 20px; /* Space between image and form on smaller screens */
+  }
+
+  .form {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px; /* Decrease input padding for smaller screens */
+  }
+
+  .btn-theme {
+    padding: 12px 24px; /* Decrease button padding for smaller screens */
+    font-size: 14px; /* Decrease font size for buttons on smaller screens */
+  }
+  #save-changes {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%; /* Ensure button takes full width on smaller screens */
+  }
+}

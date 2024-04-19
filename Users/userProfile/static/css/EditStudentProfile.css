@@ -4,7 +4,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f6f8;
-  
 }
 
 /* Container for form */
@@ -12,9 +11,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* Set minimum height to ensure the container takes full height of the viewport */
   padding: 0 5%; /* Padding for responsiveness */
-  max-width: 1200px; /* Limit the maximum width of the container */
   margin-top: 110px;
 }
 
@@ -24,12 +22,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center image and icon */
-  margin-right: 40px; /* Space between image and form */
+  margin-right: 20px; /* Space between image and form */
 }
 
 .profile-picture img {
-  width: 250px;
-  height: 250px;
+  width: 100%; /* Make image responsive */
+  max-width: 250px; /* Set maximum width */
+  height: auto; /* Maintain aspect ratio */
   margin-bottom: 25px;
   border-radius: 50%;
   object-fit: cover;
@@ -39,27 +38,16 @@ body {
 
 .edit-icon {
   position: absolute;
-  right: 20px; /* Adjusted position; use left/right as per your need */
-  left: 810px;
-  bottom: 390px; /* Adjusted position */
-  width: 50px; /* Define the width */
-  height: 50px; /* Define the height */
+  right: -20px; /* Adjusted position */
+  bottom: 0;
+  width: 50px;
+  height: 50px;
   background-color: #fff;
   border: 1px solid #7d7e7e;
-  border-radius: 50%; /* Circular shape */
-  padding-bottom: 2px;
-  padding-top: 12px;
-  padding-left: 18px;
-  padding-right: 5px;
+  border-radius: 50%;
+  padding: 10px; /* Adjusted padding */
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  z-index: 10; /* Bring icon to front if needed */
-}
-
-
-.edit-icon:hover {
-  background-color: #f0e7fe; /* Softer hover color */
-  transform: scale(1.05);
 }
 
 /* Form section */
@@ -73,8 +61,6 @@ body {
 
 /* Form group */
 .form-group {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 20px;
   position: relative;
 }
@@ -87,7 +73,6 @@ body {
   padding: 0 5px; /* Padding around the label text */
   font-weight: 500;
   color: #555;
-  display: inline-block;
   transition: color 0.3s ease;
 }
 
@@ -132,7 +117,7 @@ body {
 
 .btn-theme {
   padding: 15px 30px;
-  margin-left: 40%;
+  margin: 20px auto 0; /* Center button vertically */
   border: 2px solid #543787;
   border-radius: 30px;
   color: rgb(0, 0, 0);
@@ -145,4 +130,67 @@ body {
   background-color: #543787;
   color: white;
   transform: translateY(-2px);
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .edit-icon {
+    position: static;
+    margin-top: 10px;
+  }
+  
+  .form {
+    padding: 20px;
+  }
+  
+  .btn-theme {
+    margin-top: 20px;
+  }
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .edit-icon {
+    position: static;
+    margin-top: 10px;
+  }
+
+  .form {
+    padding: 20px;
+  }
+
+  .form-group label {
+    font-size: 14px; /* Decrease font size for labels */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px; /* Decrease font size for inputs */
+  }
+
+  .btn-theme {
+    margin-top: 20px;
+    padding: 10px 20px; /* Decrease padding for button */
+    font-size: 14px; /* Decrease font size for button */
+  }
 }

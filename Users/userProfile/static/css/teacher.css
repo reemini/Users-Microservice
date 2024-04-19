@@ -593,3 +593,67 @@ select {
 .button-group button:hover {
     background-color: #f0f0f0;
 }
+
+/* Media query for screens 768px and below */
+@media (max-width: 768px) {
+    .left__col {
+      width: 100%;
+      position: relative;
+      left: auto;
+      top: auto;
+      padding: 20px; /* Adjust padding for smaller screens */
+    }
+  
+    .right__col {
+      margin-left: 0;
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+  
+    .btn-theme-createcourse {
+      margin-left: 0;
+    }
+  
+    .course-info {
+      width: calc(50% - 20px); /* Two courses per row with 20px gap */
+      margin-left: 0;
+    }
+  
+    .menu-icon {
+      font-size: 20px; /* Decrease menu icon size */
+    }
+  }
+  
+  /* Media query for screens 576px and below */
+  @media (max-width: 576px) {
+    .left__col {
+      padding: 15px; /* Further increase padding for smaller screens */
+    }
+  
+    .course-section {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+  
+    .course-info {
+      width: calc(100% - 20px); /* One course per row with 20px gap */
+    }
+  
+    .menu-icon {
+      font-size: 18px; /* Decrease menu icon size */
+    }
+  }
+  
+  /* Media query for screens 375px and below */
+  @media (max-width: 375px) {
+    .left__col {
+      padding: 10px; /* Further increase padding for smaller screens */
+    }
+  
+    .course-section {
+      padding: 8px; /* Adjust padding for smaller screens */
+    }
+  
+    .course-info {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+  }
+  

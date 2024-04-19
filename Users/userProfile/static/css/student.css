@@ -312,3 +312,54 @@
 }
 
 /* -------------here style for the category + Search-------------- */
+/* Adjustments for small devices (phones) */
+@media only screen and (max-width: 600px) {
+    /* Adjustments for the left column */
+    .left__col {
+        width: 100%;
+        position: static;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .left__col .img__container img {
+        width: 100px; /* Decrease image size for smaller screens */
+        height: 100px; /* Decrease image size for smaller screens */
+        margin-left: auto; /* Center the image */
+        margin-right: auto; /* Center the image */
+    }
+
+    .name-profile,
+    .ID-profile,
+    .areasOfInterest {
+        font-size: 16px; /* Decrease font size for smaller screens */
+    }
+
+    /* Adjustments for the right column */
+    .right__col {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .course-info {
+        width: 100%; /* Adjusted for smaller screens */
+        margin-left: 0;
+        margin-bottom: 20px; /* Increase space between courses */
+    }
+
+    .course-image {
+        height: 150px; /* Decrease image size for smaller screens */
+    }
+
+    .course-details {
+        font-size: 14px; /* Decrease font size for smaller screens */
+    }
+
+    .analysis-section h2 {
+        font-size: 24px; /* Decrease font size for smaller screens */
+    }
+
+    .info-box {
+        padding: 10px; /* Decrease padding for smaller screens */
+    }
+}
